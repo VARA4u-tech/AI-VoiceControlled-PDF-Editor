@@ -23,11 +23,11 @@ The **Gilded Voice Scribe** is a next-generation document editing platform that 
 5.  [**Chapter 5: Core Technology Stack**](#-chapter-5-core-technology-stack)
 6.  [**Chapter 6: Voice Command Engine & Algorithmic Logic**](#-chapter-6-voice-command-engine--algorithmic-logic)
 7.  [**Chapter 7: Artificial Intelligence & Token Optimization**](#-chapter-7-artificial-intelligence--token-optimization)
-8.  [**Chapter 8: Frontend Implementation & Mystical UI**](#-chapter-8-frontend-implementation--mystical-ui)
+8.  [**Chapter 8: Frontend Implementation & Premium UI**](#-chapter-8-frontend-implementation--premium-ui)
 9.  [**Chapter 9: Backend Engineering with FastAPI**](#-chapter-9-backend-engineering-with-fastapi)
 10. [**Chapter 10: PDF Engineering: Parsing & Universal Export**](#-chapter-10-pdf-engineering-parsing--universal-export)
 11. [**Chapter 11: Security, Authentication & Multi-Tenancy**](#-chapter-11-security-authentication--multi-tenancy)
-12. [**Chapter 12: User Experience (UX) & Ambient Soundscapes**](#-chapter-12-user-experience-ux--ambient-soundscapes)
+12. [**Chapter 12: User Experience (UX) & Focus Soundscapes**](#-chapter-12-user-experience-ux--focus-soundscapes)
 13. [**Chapter 13: Testing, Quality Assurance & Performance**](#-chapter-13-testing-quality-assurance--performance)
 14. [**Chapter 14: Challenges & Solutions**](#-chapter-14-challenges--solutions)
 15. [**Chapter 15: Future Enhancements & Roadmap**](#-chapter-15-future-enhancements--roadmap)
@@ -43,7 +43,7 @@ The **Gilded Voice Scribe** is a next-generation document editing platform that 
 
 In the contemporary digital era, accessibility and efficiency in document management are paramount. Traditional mouse-and-keyboard interfaces, while precise, can be restrictive for power users, individuals with motor impairments, or professionals seeking a more "hands-free" workflow.
 
-**Gilded Voice Scribe** introduces a "Voice-First" philosophy. It is not merely a transcription tool; it is an intelligent agent capable of understanding linguistic nuances. Whether a user wants to "make this paragraph sound more poetic" or "translate paragraph 4 to Telugu," the system interprets the command and executes the DOM manipulation or AI logic instantly.
+**Voice Scribe** introduces a "Voice-First" philosophy. It is not merely a transcription tool; it is an intelligent agent capable of understanding linguistic nuances. Whether a user wants to "make this paragraph sound more professional" or "translate paragraph 4 to Telugu," the system interprets the command and executes the DOM manipulation or AI logic instantly.
 
 ---
 
@@ -77,7 +77,7 @@ Our goal was to build a system that:
 
 - **Latency**: Voice commands should be processed in < 500ms for local matches and < 3s for AI matches.
 - **Scalability**: Decoupled backend to handle multiple concurrent users.
-- **Aesthetics**: A premium "Mystical" design system to enhance user engagement.
+- **Aesthetics**: A premium design system to enhance user engagement.
 
 ---
 
@@ -110,7 +110,7 @@ The system adheres to a **Decoupled Client-Server Architecture**.
 - **React 18**: Utilizing hooks and functional components for reactive UI.
 - **TypeScript**: Ensuring type safety across complex document state.
 - **Vite**: High-performance dev server and build tool.
-- **Tailwind CSS**: Utility-first styling for the "Mystical Gold" theme.
+- **Tailwind CSS**: Utility-first styling for the "Premium Brutalist" theme.
 
 ### 5.2 Backend & Data
 
@@ -156,11 +156,11 @@ To stay within "Free Tier" limits and ensure high performance, we implemented **
 
 ## 🧛 Chapter 8: Frontend Implementation & Mystical UI
 
-### 8.1 The "Mystical" Design System
+### 8.1 The "Premium" Design System
 
 - **Color Palette**: Deep Charcoal (`#0a0a0a`) and Radiant Gold (`#fbbf24`).
 - **Typography**: Utilizing "Outfit" or "Inter" for a clean, premium feel.
-- **Micro-animations**: Floating gold particles using the HTML5 Canvas API in `FloatingParticles.tsx`.
+- **Micro-animations**: Subtle transitions using Framer Motion to enhance the user experience.
 
 ### 8.2 Component Deep-Dive
 
