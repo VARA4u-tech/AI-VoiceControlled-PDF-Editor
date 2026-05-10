@@ -49,7 +49,7 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
         <div className="flex items-center justify-center gap-6">
           <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-accent/60" />
           <p className="font-tech text-glow text-xs font-bold uppercase tracking-[0.5em] text-accent sm:text-sm md:text-base">
-            [ Protocol_V4.Scribe_Elite ]
+            Professional Suite
           </p>
           <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-accent/60" />
         </div>
@@ -58,7 +58,7 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
           <div className="mt-5 flex scale-100 flex-col items-center">
             <div className="rounded-sm border border-accent/30 bg-accent/10 px-4 py-2 shadow-[0_0_15px_rgba(255,215,0,0.1)]">
               <span className="font-mono text-xs font-medium uppercase tracking-tight text-accent">
-                Restored: {fileName} // {paragraphsCount} Blocks Found
+                Active: {fileName} // {paragraphsCount} Paragraphs
               </span>
             </div>
           </div>
@@ -76,14 +76,13 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             <Zap className="h-5 w-5" />
           </div>
           <h3 className="font-tech mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
-            Neural_Synthesis
+            Voice Intelligence
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            Advanced voice recognition algorithms translate natural speech into
-            precise document manipulations with sub-millisecond precision.
+            Edit documents naturally with our fast and accurate voice recognition technology.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
-            Latency: 0.12ms // ACTIVE
+            High Performance // ACTIVE
           </div>
         </div>
 
@@ -96,14 +95,13 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             <Shield className="h-5 w-5" />
           </div>
           <h3 className="font-tech mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
-            Secure_Encryption
+            Secure & Private
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            Local-first processing ensures your document data never leaves the
-            secure boundaries of your local terminal environment.
+            We prioritize your privacy. All document processing happens securely on your device.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
-            Status: Protected // RSA-4096
+            Status: Protected // ENCRYPTED
           </div>
         </div>
 
@@ -116,14 +114,13 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             <Cpu className="h-5 w-5" />
           </div>
           <h3 className="font-tech mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
-            Logic_Alchemy
+            Smart Editing
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            Context-aware AI understands intent, allowing for complex multi-step
-            edits with simple natural language voice phrases.
+            Our AI understands your commands, making complex document edits as simple as speaking.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
-            Core: AGI_MIMIC // V4.2L
+            AI Engine // v4.2
           </div>
         </div>
       </div>
@@ -132,10 +129,10 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
       <div className="mt-10 flex w-full max-w-md items-center justify-between border-x border-primary/10 bg-primary/5 px-6 py-4">
         <div className="flex flex-col items-center">
           <span className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
-            Uptime
+            Reliability
           </span>
           <span className="font-mono text-sm font-bold text-accent">
-            99.98%
+            99.9%
           </span>
         </div>
         <div className="h-10 w-[1px] bg-primary/20" />
@@ -144,13 +141,13 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             Version
           </span>
           <span className="font-mono text-sm font-bold text-accent">
-            SCRIBE_4.2
+            v4.2 PRO
           </span>
         </div>
         <div className="h-10 w-[1px] bg-primary/20" />
         <div className="flex flex-col items-center">
           <span className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
-            Integrity
+            Security
           </span>
           <span className="font-mono text-sm font-bold text-accent">
             VERIFIED

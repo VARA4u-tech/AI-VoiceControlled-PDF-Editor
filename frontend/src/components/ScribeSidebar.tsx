@@ -114,12 +114,12 @@ const ScribeSidebar = ({
           <div className="flex items-center justify-between p-8 pb-4">
             <div>
               <h2 className="gold-text-glow font-heading text-xl font-bold uppercase tracking-[0.2em] text-primary">
-                Neural Center
+                Smart Center
               </h2>
               <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-accent/60">
                 {user
                   ? `// Identity: ${user.email?.split("@")[0]}`
-                  : "// System_Active: Protocol_4.2"}
+                  : "// System: Active"}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ const ScribeSidebar = ({
                 <button
                   onClick={() => signOut()}
                   className="rounded-full border border-transparent p-2 text-red-500/40 transition-colors hover:border-red-500/20 hover:bg-red-500/10 hover:text-red-500"
-                  title="Sever Neural Link"
+                  title="Logout"
                 >
                   <LogOut className="h-4 w-4" />
                 </button>
@@ -150,7 +150,7 @@ const ScribeSidebar = ({
                   <Activity className="h-4 w-4 text-primary" />
                 </div>
                 <span className="mb-1 block font-mono text-[8px] uppercase tracking-tighter text-primary/40">
-                  Complexity
+                  Readability
                 </span>
                 <span className="gold-text-glow text-lg font-bold text-primary">
                   {avgWordLength > 6
@@ -181,7 +181,7 @@ const ScribeSidebar = ({
               <div className="space-y-3">
                 <div className="flex items-end justify-between">
                   <span className="font-tech text-[10px] uppercase tracking-[0.2em] text-primary/60">
-                    Lexical_Density
+                    Vocabulary Variety
                   </span>
                   <span className="font-mono text-[10px] text-accent">
                     {Math.round(scholarlyWeight)}%
@@ -197,7 +197,7 @@ const ScribeSidebar = ({
               <div className="space-y-3">
                 <div className="flex items-end justify-between">
                   <span className="font-tech text-[10px] uppercase tracking-[0.2em] text-primary/60">
-                    Stream_Saturation
+                    Content Density
                   </span>
                   <span className="font-mono text-[10px] text-accent">
                     {Math.round(focusIntensity)}%
@@ -215,13 +215,13 @@ const ScribeSidebar = ({
             {/* Activity Feed */}
             <div className="space-y-4">
               <h3 className="font-tech mb-4 text-[10px] uppercase tracking-[0.3em] text-primary/40">
-                Transmission_Log
+                Activity History
               </h3>
               {scribeLog.length === 0 ? (
                 <div className="flex flex-col items-center justify-center space-y-4 py-12 text-center opacity-20">
                   <Bot className="h-10 w-10 text-primary" />
                   <p className="font-body text-xs italic">
-                    AI buffer empty. Awaiting document processing signals...
+                    Activity history is empty. Your edits will appear here.
                   </p>
                 </div>
               ) : (
@@ -238,7 +238,7 @@ const ScribeSidebar = ({
                         <BarChart3 className="h-3.5 w-3.5 text-primary" />
                       )}
                       <span className="font-tech text-[10px] uppercase tracking-[0.1em] text-primary/80">
-                        {log.title || "Core_Report"}
+                        {log.title || "Status Update"}
                       </span>
                       <span className="ml-auto font-mono text-[8px] opacity-30">
                         {log.timestamp.toLocaleTimeString([], {
@@ -260,7 +260,7 @@ const ScribeSidebar = ({
           <div className="pointer-events-none p-8 pt-4 opacity-20">
             <div className="mb-4 h-[1px] w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
             <div className="text-center font-mono text-[8px] uppercase tracking-[0.5em]">
-              // End_Of_Line //
+              // End of Session //
             </div>
           </div>
         </div>

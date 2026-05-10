@@ -74,7 +74,7 @@ const Analytics = () => {
   const MEDAL_COLORS = ["text-yellow-400", "text-slate-300", "text-amber-600"];
 
   return (
-    <Layout title="Analytics" subtitle="Transmission_Metrics" icon={BarChart3}>
+    <Layout title="Analytics" subtitle="Usage Statistics" icon={BarChart3}>
       {loading ? (
         <div className="flex justify-center py-20">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent border-t-transparent" />
@@ -99,7 +99,7 @@ const Analytics = () => {
                 value: stats.activeDocuments,
                 icon: Layers,
               },
-              { label: "Ritual Days", value: stats.uniqueDays, icon: Clock },
+              { label: "Active Days", value: stats.uniqueDays, icon: Clock },
             ].map(({ label, value, icon: Icon }) => (
               <div
                 key={label}
@@ -120,13 +120,13 @@ const Analytics = () => {
           <section className="space-y-3">
             <h3 className="font-tech flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
               <Activity className="h-4 w-4 text-accent" />
-              Processing_Velocity
+              Performance Metrics
             </h3>
             <div className="space-y-3">
               {[
-                { label: "Neural Success Rate", value: stats.successRate },
-                { label: "Protocol Compliance", value: 99 },
-                { label: "Signal Stability", value: 92 },
+                { label: "Command Success Rate", value: stats.successRate },
+                { label: "AI Reliability", value: 99 },
+                { label: "Voice Accuracy", value: 92 },
               ].map((s) => (
                 <div key={s.label} className="space-y-1">
                   <div className="flex justify-between font-mono text-[11px] text-primary/60">
@@ -152,7 +152,7 @@ const Analytics = () => {
           <section className="space-y-4">
             <h3 className="font-tech flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
               <Trophy className="h-4 w-4 text-accent" />
-              Command_Leaderboard
+              Popular Commands
             </h3>
 
             {leaderboard.length === 0 ? (
@@ -210,13 +210,13 @@ const Analytics = () => {
           <section>
             <h3 className="font-tech mb-4 flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
               <Layers className="h-4 w-4 text-accent" />
-              Biometric_Sync
+              System Status
             </h3>
             <div className="flex flex-wrap justify-around gap-4 rounded-sm border border-primary/10 bg-primary/5 p-4">
               {[
-                { label: "Auth_Link", value: user ? "Established" : "Severed" },
-                { label: "DB_Sync", value: "Stable" },
-                { label: "AI_Core", value: "Online" },
+                { label: "Account Link", value: user ? "Connected" : "Disconnected" },
+                { label: "Cloud Sync", value: "Active" },
+                { label: "AI Service", value: "Online" },
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
                   <div className="mb-1 font-mono text-[10px] uppercase text-primary/40">

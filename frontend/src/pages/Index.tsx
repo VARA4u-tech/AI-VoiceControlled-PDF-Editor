@@ -140,7 +140,7 @@ const Index = () => {
             setFileName(data.file_hash);
             setParagraphs(data.content);
             setPageCount(data.page_count);
-            setCommandFeedback("Ritual_Restored: Cloud synchronize complete.");
+            setCommandFeedback("Session Restored: Cloud synchronization complete.");
             playSuccess();
           }
         });
@@ -166,7 +166,7 @@ const Index = () => {
     // Supabase Persistence — fallback to select + update/insert manually
     // since the database lacks a unique constraint for upsert to use onConflict.
     if (user && paragraphs.length > 0) {
-      const activeName = fileName || "unnamed_ritual";
+      const activeName = fileName || "unnamed_document";
       supabase
         .from("user_documents")
         .select("id")
@@ -175,7 +175,7 @@ const Index = () => {
         .maybeSingle()
         .then(({ data, error: selectError }) => {
           if (selectError) {
-            console.error("Ritual_Backup Fetch Failed:", selectError.message);
+            console.error("Backup Fetch Failed:", selectError.message);
             return;
           }
 
@@ -204,7 +204,7 @@ const Index = () => {
               })
               .then(({ error }) => {
                 if (error)
-                  console.error("Ritual_Backup Insert Failed:", error.message);
+                  console.error("Backup Insert Failed:", error.message);
               });
           }
         });
@@ -303,8 +303,8 @@ const Index = () => {
 
         setCommandFeedback(
           selectedParagraphIndex !== null
-            ? `Scribe_AI: Modulating Segment ${selectedParagraphIndex + 1}...`
-            : "Scribe_AI: Decrypting intent...",
+            ? `AI Assistant: Modifying Segment ${selectedParagraphIndex + 1}...`
+            : "AI Assistant: Understanding intent...",
         );
         result = await processCommandWithAI(trimmedCmd, targetParagraphs);
 
@@ -343,7 +343,7 @@ const Index = () => {
               is_success: true,
             })
             .then(({ error }) => {
-              if (error) console.error("Ritual_Log Failed:", error.message);
+              if (error) console.error("Activity Log Failed:", error.message);
             });
         }
 
@@ -425,10 +425,10 @@ const Index = () => {
   const handleSelectParagraph = useCallback((index: number | null) => {
     setSelectedParagraphIndex(index);
     if (index !== null) {
-      setCommandFeedback(`Target_Locked: Segment ${index + 1} selected.`);
+      setCommandFeedback(`Selection Locked: Segment ${index + 1} selected.`);
       setCommandSuccess(true);
     } else {
-      setCommandFeedback("Target_Released: Global editing active.");
+      setCommandFeedback("Global Edit: All segments active.");
       setCommandSuccess(true);
     }
     setTimeout(() => setCommandFeedback(null), 3000);
@@ -478,7 +478,7 @@ const Index = () => {
 
       // If the command is empty or already processed, ignore
       if (!cmd || cmd === lastProcessedTranscriptRef.current) {
-        if (!cmd) console.warn("Neural_Link: No vocal data captured.");
+        if (!cmd) console.warn("Voice Link: No audio captured.");
         setIsProcessing(false);
         return;
       }
@@ -494,7 +494,7 @@ const Index = () => {
       setScribeLog((prev) => [
         ...prev,
         {
-          title: "Vocal_Command Synchronized",
+          title: "Voice Command Captured",
           content: `Data: "${cmd}"`,
           type: "info",
           timestamp: new Date(),
@@ -546,7 +546,7 @@ const Index = () => {
       setScribeLog((prev) => [
         ...prev,
         {
-          content: "Neural_Link Established. Listening...",
+          content: "Voice Link Established. Listening...",
           type: "info",
           timestamp: new Date(),
         },
@@ -732,7 +732,7 @@ const Index = () => {
     setParagraphs([]);
     setPageCount(0);
     setHistory([]);
-    setCommandFeedback("Ritual Cleared: Archive connection suspended.");
+    setCommandFeedback("Session Cleared: Document unloaded.");
     setCommandSuccess(true);
     playTransition();
     clearFeedback();
@@ -756,7 +756,7 @@ const Index = () => {
       clearFeedback();
     } catch (err) {
       console.error("Export error:", err);
-      setCommandFeedback("Neural export failed. Please try again.");
+      setCommandFeedback("Export failed. Please try again.");
       setCommandSuccess(false);
       playError();
     } finally {

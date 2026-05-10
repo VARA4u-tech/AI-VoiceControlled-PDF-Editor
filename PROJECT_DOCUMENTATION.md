@@ -34,6 +34,8 @@ The **Gilded Voice Scribe** is a next-generation document editing platform that 
 16. [**Chapter 16: Conclusion**](#-chapter-16-conclusion)
 17. [**Appendix A: API Reference**](#-appendix-a-api-reference)
 18. [**Appendix B: Installation Guide**](#-appendix-b-installation-guide)
+19. [**Appendix C: Sample Source Code**](#-appendix-c-sample-source-code)
+20. [**Appendix D: Sample System Output**](#-appendix-d-sample-system-output)
 
 ---
 
@@ -87,7 +89,7 @@ The system adheres to a **Decoupled Client-Server Architecture**.
 
 - **Client (React)**: Handles UI, Voice Recognition, and Document State.
 - **Backend (FastAPI)**: Acts as a secure proxy and data processor.
-- **AI Layer (OpenRouter)**: Provides the brain for complex intent matching.
+- **AI Layer (OpenAI)**: Provides the brain for complex intent matching.
 - **Identity Layer (Supabase)**: Manages JWT-based authentication.
 
 ### 4.2 Data Flow Diagram (DFD)
@@ -96,7 +98,7 @@ The system adheres to a **Decoupled Client-Server Architecture**.
 2.  **Transcript** -> Command Engine (Local Regex Match?).
     - _YES_: Execute state update locally.
     - _NO_: Send to FastAPI Backend.
-3.  **FastAPI** -> OpenRouter AI -> **Structured JSON Response**.
+3.  **FastAPI** -> OpenAI AI -> **Structured JSON Response**.
 4.  **JSON Response** -> Frontend -> **DOM Update / PDF Re-render**.
 
 ---
@@ -114,7 +116,7 @@ The system adheres to a **Decoupled Client-Server Architecture**.
 
 - **FastAPI**: Asynchronous Python framework for high-throughput AI requests.
 - **Supabase**: PostgreSQL database and Auth provider.
-- **OpenRouter**: Unified API access to the world's best LLMs (StepFun, OpenAI, Anthropic).
+- **OpenAI**: Unified API access to the world's best LLMs (StepFun, OpenAI, Anthropic).
 
 ---
 
@@ -276,7 +278,118 @@ The **Gilded Voice Scribe** demonstrates that the fusion of modern Web APIs and 
 1. `git clone`
 2. `npm install` in frontend
 3. `pip install -r requirements.txt` in backend
-4. Set `.env` with Supabase and OpenRouter keys.
+4. Set `.env` with Supabase and OpenAI keys.
+
+---
+
+## 💻 Appendix C: Sample Source Code
+
+### C.1 Frontend: Tiered Voice Command Engine (`voiceCommands.ts`)
+
+This snippet demonstrates how the system uses Regular Expressions for "Instant Execution" before falling back to Large Language Models.
+
+```typescript
+// Core logic for processing verbal intent without network latency
+export function processVoiceCommand(
+  command: string,
+  paragraphs: string[],
+): CommandResult {
+  const trimmed = command.trim().toLowerCase();
+
+  for (const cmd of commands) {
+    const match = trimmed.match(cmd.pattern);
+    if (match) {
+      // Execute local handler (e.g., regex-based search/replace)
+      return cmd.handler([...paragraphs], match);
+    }
+  }
+
+  // Suggestion fallback if no local pattern matches
+  return {
+    success: false,
+    message: "Not recognized. routing to AI Oracle...",
+    updatedParagraphs: paragraphs,
+  };
+}
+```
+
+### C.2 Backend: AI Oracle Proxy (`editing.py`)
+
+This Python/FastAPI code handles the communication with OpenAI to perform semantic text editing.
+
+```python
+@router.post("/text", response_model=EditResponse)
+async def edit_text(
+    body: EditRequest,
+    client: AsyncOpenAI = Depends(get_openai_client),
+    user=Depends(verify_supabase_token),
+):
+    """Semantic editing route for complex voice commands."""
+    user_message = f"Instruction: {body.instruction}\n\nText:\n{body.text}"
+
+    response = await client.chat.completions.create(
+        model=body.model,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=0.3,
+    )
+
+    edited = response.choices[0].message.content or ""
+    return EditResponse(original=body.text, edited=edited.strip(), model=body.model)
+```
+
+### C.3 PDF Engineering: Universal Export Solution (`pdfExport.ts`)
+
+The innovative "Snap-to-PDF" method that bypasses traditional font rendering issues for Indian languages (Telugu, Hindi).
+
+```typescript
+export async function exportToPdf(fileName: string, paragraphs: string[]) {
+  const container = document.createElement("div");
+  // ... Setup styles for A4 layout ...
+
+  // Take a high-DPI visual snapshot of the DOM
+  const canvas = await html2canvas(container, { scale: 2 });
+  const imgData = canvas.toDataURL("image/png");
+
+  // Inject image into PDF - ensures 100% script fidelity
+  const pdf = new jsPDF({ format: "a4" });
+  pdf.addImage(imgData, "PNG", 0, 0, 210, 210 * (canvas.height / canvas.width));
+  pdf.save(`${fileName}.pdf`);
+}
+```
+
+---
+
+## 📊 Appendix D: Sample System Output
+
+### D.1 Interaction: Local Command (Regex)
+
+| Field                | Value                                                                  |
+| :------------------- | :--------------------------------------------------------------------- |
+| **User Voice Input** | "Replace 'Hello World' with 'Greetings Universe'"                      |
+| **System Action**    | Local Regex Matching                                                   |
+| **Execution Time**   | 42ms                                                                   |
+| **Toast Message**    | `Replaced 1 occurrence(s) of "Hello World" with "Greetings Universe".` |
+
+### D.2 Interaction: AI Tone Shifting
+
+| Field                | Value                                                                                                         |
+| :------------------- | :------------------------------------------------------------------------------------------------------------ |
+| **User Voice Input** | "Rewrite paragraph 1 to be professional"                                                                      |
+| **Input Text**       | "hey check this out we need to fix the bugs ASAP"                                                             |
+| **AI Output**        | "It is essential that we prioritize the resolution of existing software defects at our earliest convenience." |
+| **Status Indicator** | `Neural Link Active: Tone Shifting Complete.`                                                                 |
+
+### D.3 Interaction: Mystical Translation
+
+| Field                | Value                                                          |
+| :------------------- | :------------------------------------------------------------- |
+| **User Voice Input** | "Translate paragraph 1 to Telugu"                              |
+| **Input Text**       | "The scribe is writing the history."                           |
+| **Output Text**      | "లేఖకుడు చరిత్ర రాస్తున్నాడు. (Lēkhakuḍu caritra rāstunnāḍu.)" |
+| **Export Status**    | `Indic Script Rendered Successfully.`                          |
 
 ---
 

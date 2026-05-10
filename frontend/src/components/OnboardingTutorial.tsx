@@ -28,8 +28,8 @@ interface Step {
 const STEPS: Step[] = [
   {
     icon: <Sparkles className="h-8 w-8" />,
-    title: "Welcome to the Neural Scribe",
-    subtitle: "Voice Controlled PDF Editor — Your voice-powered document ritual",
+    title: "Welcome to Voice Scribe",
+    subtitle: "Voice Controlled PDF Editor — Edit documents with your voice",
     commands: [],
     tip: "This short guide will show you how to master the system. You can dismiss it anytime.",
     color: "from-amber-500/20 to-transparent",
@@ -37,9 +37,9 @@ const STEPS: Step[] = [
   {
     icon: <FileText className="h-8 w-8" />,
     title: "Upload Your Document",
-    subtitle: "Inject a PDF or TXT scroll into the system",
+    subtitle: "Import a PDF or text file into the editor",
     commands: [
-      "Click Upload_Scroll in the toolbar",
+      "Click Upload Document in the toolbar",
       "Supports text-based PDFs & plain text files",
       "Scanned PDFs require OCR pre-processing",
     ],
@@ -49,7 +49,7 @@ const STEPS: Step[] = [
   {
     icon: <Mic className="h-8 w-8" />,
     title: "Activate Voice Control",
-    subtitle: "Speak naturally — the Oracle listens",
+    subtitle: "Speak naturally — the AI is listening",
     commands: [
       '"Delete segment 3"',
       '"Replace segment 5 with Hello World"',
@@ -62,7 +62,7 @@ const STEPS: Step[] = [
   {
     icon: <Wand2 className="h-8 w-8" />,
     title: "AI-Powered Commands",
-    subtitle: "The Gilded Scribe understands complex instructions",
+    subtitle: "Voice Scribe understands complex instructions",
     commands: [
       '"Fix grammar mistakes in segment 1"',
       '"Make segment 4 shorter and simpler"',
@@ -77,7 +77,7 @@ const STEPS: Step[] = [
     title: "Search & Navigate",
     subtitle: "Find any word instantly across the document",
     commands: [
-      "Use the Search_Archive bar in the document panel",
+      "Use the Search bar in the document panel",
       "Type to highlight all matching paragraphs",
       "Press Enter to jump to the next match",
     ],
@@ -87,11 +87,11 @@ const STEPS: Step[] = [
   {
     icon: <Save className="h-8 w-8" />,
     title: "Save & Export",
-    subtitle: "Archive your work or download a formatted PDF",
+    subtitle: "Store your work or download a formatted PDF",
     commands: [
-      "Save_Version — seals the current state to the cloud archive",
-      "Export_Out — downloads a branded PDF instantly",
-      "Auto_Title — let AI name your document",
+      "Save Version — stores the current state to the cloud",
+      "Export PDF — downloads a clean PDF instantly",
+      "Auto Title — let AI name your document",
     ],
     tip: "Visit the History page to restore any previously saved version.",
     color: "from-rose-500/20 to-transparent",
@@ -99,13 +99,13 @@ const STEPS: Step[] = [
   {
     icon: <Trophy className="h-8 w-8" />,
     title: "Track Your Progress",
-    subtitle: "Analytics, Leaderboards & Session History",
+    subtitle: "Analytics, Usage & Session History",
     commands: [
-      "Analytics — See your command leaderboard & success rate",
+      "Analytics — See your command history & success rate",
       "History — Browse all sessions and restore documents",
       "Session Timer — Tracks time spent on each document",
     ],
-    tip: "Log in to sync everything with the cloud. Your rituals await.",
+    tip: "Log in to sync everything with the cloud. Your documents await.",
     color: "from-yellow-500/20 to-transparent",
   },
 ];
@@ -255,7 +255,7 @@ const OnboardingTutorial = ({
             >
               {isLast ? (
                 <>
-                  <Sparkles className="h-4 w-4 animate-pulse" /> Begin Ritual
+                  <Sparkles className="h-4 w-4 animate-pulse" /> Start Editing
                 </>
               ) : (
                 <>

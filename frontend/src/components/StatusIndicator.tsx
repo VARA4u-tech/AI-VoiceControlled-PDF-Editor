@@ -7,7 +7,7 @@ const statusLabels = {
   idle: "Ready",
   listening: "Listening...",
   processing: "Processing...",
-  cooldown: "Rebooting...",
+  cooldown: "Processing...",
 };
 
 const StatusIndicator = ({ status, isCooldown }: StatusIndicatorProps) => {
@@ -31,7 +31,7 @@ const StatusIndicator = ({ status, isCooldown }: StatusIndicatorProps) => {
           }`}
         />
         <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary/90 sm:text-[11px]">
-          <span className="mr-2 opacity-50">SYS_STATUS:</span>
+          <span className="mr-2 opacity-50">STATUS:</span>
           {statusLabels[currentStatus]}
         </span>
       </div>

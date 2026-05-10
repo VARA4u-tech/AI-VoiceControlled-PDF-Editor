@@ -36,7 +36,7 @@ const CommandHelp = () => {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-primary/10 bg-primary/5 px-4 pb-3 pt-4">
               <p className="font-tech text-[9px] uppercase tracking-[0.4em] text-accent">
-                [ Command Protocols: Voice_Core ]
+                [ Voice Command Center ]
               </p>
               <button
                 onClick={() => setIsOpen(false)}
@@ -59,7 +59,7 @@ const CommandHelp = () => {
                     </p>
                     <p className="font-mono text-[11px] text-primary transition-colors group-hover/item:text-accent sm:text-[12px]">
                       <span className="font-tech mr-2 text-[8px] tracking-[0.2em] opacity-40">
-                        EXEC_CMD:
+                        SAY:
                       </span>
                       "{cmd.example}"
                     </p>
@@ -73,7 +73,7 @@ const CommandHelp = () => {
                   </p>
                   <p className="font-mono text-[11px] text-destructive/80 sm:text-[12px]">
                     <span className="font-tech mr-2 text-[8px] tracking-[0.2em] opacity-40">
-                      EXEC_REV:
+                      UNDO:
                     </span>
                     "undo"
                   </p>
