@@ -20,7 +20,7 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Greetings, Scribe. I am the Logic_Alchemy core. I am here for counsel and discourse. How can I assist you today?",
+      text: "Hello! I am your AI editing assistant. I can help you format, rewrite, or analyze your document. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -65,7 +65,7 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
     } catch (err) {
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
-        text: "The neural link encountered an error during transmission.",
+        text: "Sorry, I encountered an error. Please try again.",
         sender: "bot",
         timestamp: new Date(),
       };
@@ -92,10 +92,10 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
               </div>
               <div>
                 <h3 className="font-tech text-[11px] uppercase tracking-[0.2em] text-primary">
-                  Scribe_AI
+                  Scribe AI
                 </h3>
                 <p className="font-mono text-[9px] uppercase text-accent/60">
-                  Status: Core_Online
+                  Status: Online
                 </p>
               </div>
             </div>
@@ -157,13 +157,13 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Transmitting signal..."
+                placeholder="Type a message..."
                 className="w-full rounded-md border border-primary/20 bg-slate-900/50 py-2 pl-3 pr-10 font-mono text-[12px] text-primary transition-colors placeholder:text-primary/20 focus:border-accent/40 focus:outline-none"
               />
               <button
                 onClick={handleSend}
                 className="absolute right-2 p-1.5 text-accent transition-colors hover:text-primary"
-                title="Send Transmission"
+                title="Send message"
               >
                 <Send className="h-3.5 w-3.5" />
               </button>
