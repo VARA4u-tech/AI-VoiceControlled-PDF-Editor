@@ -11,20 +11,19 @@ import {
 const IntelHub = () => {
   return (
     <Layout
-      title="Intel Hub"
-      subtitle="Student_Resource_Center"
+      title="Help Center"
+      subtitle="User Guides & Manual"
       icon={GraduationCap}
     >
       <div className="animate-fade-in space-y-12 px-2">
         {/* Intro */}
         <section className="space-y-4 text-center">
           <h3 className="gold-text-glow font-heading text-xl uppercase tracking-[0.3em] text-primary">
-            The Student Scribe Manual
+            Scribe AI User Manual
           </h3>
           <p className="mx-auto max-w-3xl font-body text-base italic leading-relaxed text-foreground/80">
-            Maximize your academic productivity. Scribe is engineered
-            specifically for students to bridge the gap between spoken thought
-            and structured academic documents.
+            Maximize your productivity. Scribe is engineered to bridge the gap
+            between spoken thought and structured, professional documents.
           </p>
         </section>
 
@@ -34,19 +33,19 @@ const IntelHub = () => {
             <div className="tech-bracket-tl h-2 w-2" />
             <h4 className="font-tech mb-6 flex items-center gap-3 text-xs uppercase tracking-widest text-primary/80">
               <Sparkles className="h-4 w-4 text-accent" />
-              Academic_Quickstart
+              Quick Start Guide
             </h4>
             <ul className="space-y-4 font-mono text-[11px] text-primary/70">
               <li className="flex gap-3">
                 <span className="font-bold text-accent">01.</span>
                 <span>
-                  Inject your lecture notes or assignment drafts (PDF/TXT).
+                  Upload your document drafts (PDF/TXT).
                 </span>
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-accent">02.</span>
                 <span>
-                  Activate the Neural Link (Mic) to dictate structure.
+                  Activate the Mic to dictate structure or content.
                 </span>
               </li>
               <li className="flex gap-3">
@@ -57,7 +56,7 @@ const IntelHub = () => {
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-accent">04.</span>
-                <span>Seal your version and export to high-quality PDF.</span>
+                <span>Save your version and export to high-quality PDF.</span>
               </li>
             </ul>
           </section>
@@ -67,7 +66,7 @@ const IntelHub = () => {
             <div className="tech-bracket-tl h-2 w-2" />
             <h4 className="font-tech mb-6 flex items-center gap-3 text-xs uppercase tracking-widest text-primary/80">
               <BookOpen className="h-4 w-4 text-accent" />
-              Power_Commands
+              Editing Commands
             </h4>
             <div className="grid grid-cols-1 gap-3">
               <div className="border-l-2 border-accent/30 bg-accent/5 p-2">
@@ -101,7 +100,7 @@ const IntelHub = () => {
         {/* Use Cases */}
         <section className="space-y-6">
           <h4 className="font-tech text-center text-xs font-bold uppercase tracking-[0.3em] text-primary">
-            Optimal_Study_Flows
+            Common Workflows
           </h4>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="p-4 text-center">
@@ -139,9 +138,9 @@ const IntelHub = () => {
         {/* Support Link */}
         <section className="border-t border-primary/10 py-6 text-center">
           <p className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
-            Need advanced support? Transmit signal to{" "}
+            Need advanced support? Email us at{" "}
             <span className="cursor-pointer text-accent underline">
-              mdxxvi.core
+              support@scribeai.com
             </span>
           </p>
         </section>

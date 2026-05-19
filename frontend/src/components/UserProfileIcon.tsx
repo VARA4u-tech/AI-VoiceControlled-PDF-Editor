@@ -71,7 +71,7 @@ const UserProfileIcon = () => {
               </div>
               <div className="min-w-0">
                 <p className="font-tech mb-0.5 text-[10px] uppercase tracking-widest text-accent/60">
-                  Neural_Entity
+                  User Profile
                 </p>
                 <p className="truncate font-mono text-[11px] text-primary/80">
                   {user.email}
@@ -102,7 +102,7 @@ const UserProfileIcon = () => {
                 <div className="flex items-center gap-3">
                   <div className="h-1.5 w-1.5 rounded-full bg-primary/20 transition-colors group-hover/item:bg-accent" />
                   <span className="font-tech text-[11px] uppercase tracking-widest text-primary/70 transition-colors group-hover/item:text-primary">
-                    Ritual History
+                    Activity History
                   </span>
                 </div>
                 <ChevronRight className="h-3 w-3 text-primary/30 transition-all group-hover/item:translate-x-0.5 group-hover/item:text-accent" />
@@ -116,7 +116,7 @@ const UserProfileIcon = () => {
                 <div className="flex items-center gap-3">
                   <div className="h-1.5 w-1.5 rounded-full bg-primary/20 transition-colors group-hover/item:bg-accent" />
                   <span className="font-tech text-[11px] uppercase tracking-widest text-primary/70 transition-colors group-hover/item:text-primary">
-                    Neural Settings
+                    User Settings
                   </span>
                 </div>
                 <Settings className="h-3 w-3 text-primary/30 transition-all group-hover/item:text-accent" />
@@ -131,14 +131,14 @@ const UserProfileIcon = () => {
               >
                 <LogOut className="h-3.5 w-3.5" />
                 <span className="font-tech text-[11px] uppercase tracking-widest">
-                  Sever_Connection
+                  Sign Out
                 </span>
               </button>
             </div>
 
             <div className="mt-4 border-t border-primary/5 pt-2">
               <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.2em] text-primary/30">
-                <span>Neural_Sync: STABLE</span>
+                <span>Sync Status: Active</span>
                 <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-500" />
               </div>
             </div>

@@ -11,20 +11,20 @@ import {
 const Terms = () => {
   return (
     <Layout
-      title="Terms of Sync"
-      subtitle="Standard_Usage_Protocol"
+      title="Terms of Service"
+      subtitle="Standard Terms"
       icon={Scale}
     >
       <div className="mx-auto max-w-4xl animate-fade-in space-y-12 px-2">
         {/* Intro */}
         <section className="space-y-4 text-center">
           <h3 className="font-tech gold-text-glow text-xl font-bold uppercase tracking-[0.3em] text-primary">
-            The Scribe Service Accord
+            Terms of Service
           </h3>
           <p className="font-body text-base italic leading-relaxed text-foreground/80">
-            By syncing your student profile with the Scribe neural network, you
-            agree to maintain the integrity of the academic collective. Our
-            tools are for assistance, not automation.
+            By using our AI Voice Editor service, you agree to maintain the
+            integrity of academic and professional standards. Our tools are for
+            assistance, not automation of fraud.
           </p>
         </section>
 
@@ -33,7 +33,7 @@ const Terms = () => {
           <section className="space-y-6">
             <h4 className="font-tech mb-4 flex items-center gap-3 border-b border-primary/10 pb-2 text-xs font-bold uppercase tracking-widest text-primary">
               <CheckCircle2 className="h-4 w-4 text-accent" />{" "}
-              Permitted_Operations
+              Permitted Uses
             </h4>
             <div className="space-y-6 font-mono text-[11px] text-primary/70">
               <div className="border-l-2 border-accent/20 bg-accent/5 p-3">
@@ -53,11 +53,11 @@ const Terms = () => {
 
           <section className="space-y-6">
             <h4 className="font-tech mb-4 flex items-center gap-3 border-b border-primary/10 pb-2 text-xs font-bold uppercase tracking-widest text-primary">
-              <AlertOctagon className="h-4 w-4 text-accent" /> Restricted_Logic
+              <AlertOctagon className="h-4 w-4 text-accent" /> Restricted Activities
             </h4>
             <div className="space-y-6 font-mono text-[11px] text-primary/70">
               <div className="border-l-2 border-primary/20 bg-primary/5 p-3">
-                <p>• Reverse engineering the Scribe neural protocols.</p>
+                <p>• Reverse engineering the voice processing systems.</p>
               </div>
               <div className="border-l-2 border-primary/20 bg-primary/5 p-3">
                 <p>• Automating high-volume academic dishonesty.</p>
@@ -81,12 +81,12 @@ const Terms = () => {
           </div>
           <div className="space-y-3 text-center">
             <h4 className="font-tech text-xs font-bold uppercase tracking-[0.4em] text-primary/80">
-              Global_Sync_Protocol
+              Global Synchronization
             </h4>
             <p className="mx-auto max-w-2xl font-body text-[11px] italic leading-relaxed text-foreground/50">
-              Scribe operates under the laws of MDXXVI. Any misuse for harmful
-              academic fraud will result in an immediate and irreversible neural
-              link termination. Always prioritize original scholarship.
+              Scribe operates under global academic integrity standards. Any misuse
+              for harmful fraud will result in immediate account suspension.
+              Always prioritize original scholarship.
             </p>
           </div>
         </section>
@@ -96,7 +96,7 @@ const Terms = () => {
           <p className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
             Last Updated //{" "}
             <span className="cursor-pointer text-accent underline">
-              MDXXVI_MAR_03
+              MARCH 2026
             </span>
           </p>
         </section>

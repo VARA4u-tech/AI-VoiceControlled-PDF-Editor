@@ -50,7 +50,7 @@ const SessionHistory = () => {
         .eq("user_id", user.id)
         .order("updated_at", { ascending: false });
 
-      if (error) toast.error("Failed to fetch scrolls.");
+      if (error) toast.error("Failed to fetch documents.");
       else setDocuments(data || []);
     } else {
       const { data, error } = await supabase
@@ -58,7 +58,7 @@ const SessionHistory = () => {
         .select("*")
         .order("created_at", { ascending: false });
 
-      if (error) toast.error("Failed to decrypt logs.");
+      if (error) toast.error("Failed to fetch logs.");
       else setLogs(data || []);
     }
     setLoading(false);
@@ -84,12 +84,12 @@ const SessionHistory = () => {
         pageCount: doc.page_count || 0,
       }),
     );
-    toast.success("Ritual Restored. Redirecting to Core...");
+    toast.success("Document version restored. Redirecting to dashboard...");
     setTimeout(() => navigate("/"), 1000);
   };
 
   const handleDeleteDocument = async (id: string) => {
-    if (!confirm("Are you sure you want to purge this scroll?")) return;
+    if (!confirm("Are you sure you want to delete this document?")) return;
 
     const { error } = await supabase
       .from("user_documents")
@@ -97,15 +97,15 @@ const SessionHistory = () => {
       .eq("id", id);
 
     if (error) {
-      toast.error("Failed to purge scroll.");
+      toast.error("Failed to delete document.");
     } else {
       setDocuments(documents.filter((d) => d.id !== id));
-      toast.success("Scroll purged from archives.");
+      toast.success("Document removed from history.");
     }
   };
 
   const handleDeleteLog = async (id: string) => {
-    if (!confirm("Are you sure you want to erase this memory?")) return;
+    if (!confirm("Are you sure you want to delete this activity log?")) return;
 
     const { error } = await supabase
       .from("scribe_activity")
@@ -113,10 +113,10 @@ const SessionHistory = () => {
       .eq("id", id);
 
     if (error) {
-      toast.error("Failed to erase log.");
+      toast.error("Failed to delete log.");
     } else {
       setLogs(logs.filter((l) => l.id !== id));
-      toast.success("Memory erased.");
+      toast.success("Log entry deleted.");
     }
   };
 
@@ -125,8 +125,8 @@ const SessionHistory = () => {
     const table = view === "documents" ? "user_documents" : "scribe_activity";
     const message =
       view === "documents"
-        ? "Are you sure you want to purge ALL scrolls? This cannot be undone."
-        : "Are you sure you want to erase ALL neural logs? This cannot be undone.";
+        ? "Are you sure you want to delete ALL documents? This cannot be undone."
+        : "Are you sure you want to delete ALL activity logs? This cannot be undone.";
 
     if (!confirm(message)) return;
 
@@ -137,17 +137,17 @@ const SessionHistory = () => {
 
     if (error) {
       toast.error(
-        `Failed to clear ${view === "documents" ? "archives" : "memory"}.`,
+        `Failed to clear ${view === "documents" ? "documents" : "activity logs"}.`,
       );
     } else {
       if (view === "documents") setDocuments([]);
       else setLogs([]);
-      toast.success(`${view === "documents" ? "Archives" : "Memory"} cleared.`);
+      toast.success(`${view === "documents" ? "Documents" : "Logs"} cleared.`);
     }
   };
 
   return (
-    <Layout title="History" subtitle="Ritual_Logs" icon={History}>
+    <Layout title="History" subtitle="Activity History" icon={History}>
       <div className="space-y-8">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           {/* View Toggle */}
@@ -156,13 +156,13 @@ const SessionHistory = () => {
               onClick={() => setView("documents")}
               className={`font-tech px-4 py-2 text-[10px] uppercase tracking-widest transition-all ${view === "documents" ? "bg-accent/20 text-accent" : "text-primary/40 hover:text-primary"}`}
             >
-              Active_Scrolls
+              Saved Documents
             </button>
             <button
               onClick={() => setView("activity")}
               className={`font-tech px-4 py-2 text-[10px] uppercase tracking-widest transition-all ${view === "activity" ? "bg-accent/20 text-accent" : "text-primary/40 hover:text-primary"}`}
             >
-              Neural_Logs
+              Voice Logs
             </button>
           </div>
 
@@ -173,7 +173,7 @@ const SessionHistory = () => {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary/40" />
               <input
                 type="text"
-                placeholder="Search_Archives..."
+                placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full rounded-sm border border-primary/20 bg-primary/5 py-2 pl-10 pr-4 font-mono text-[11px] text-primary transition-colors placeholder:text-primary/20 focus:border-accent/40 focus:outline-none"
@@ -187,10 +187,10 @@ const SessionHistory = () => {
                 onClick={handleClearAll}
                 className="font-tech flex shrink-0 items-center justify-center gap-2 rounded-sm border border-red-500/20 bg-red-500/10 px-4 py-2 text-[10px] uppercase tracking-widest text-red-500 transition-all hover:bg-red-500/20"
                 title={
-                  view === "documents" ? "Purge All Scrolls" : "Erase All Logs"
+                  view === "documents" ? "Delete All Documents" : "Delete All Logs"
                 }
               >
-                <Trash2 className="h-3 w-3" /> Purge_All
+                <Trash2 className="h-3 w-3" /> Delete All
               </button>
             )}
           </div>
@@ -259,7 +259,7 @@ const SessionHistory = () => {
                           <button
                             onClick={() => handleDeleteDocument(doc.id)}
                             className="flex items-center gap-2 rounded-sm border border-red-500/20 bg-red-500/10 p-2 text-red-400 transition-all hover:bg-red-500/20"
-                            title="Purge Scroll"
+                            title="Delete Document"
                           >
                             <Trash2 className="h-3 w-3" />
                           </button>
@@ -271,7 +271,7 @@ const SessionHistory = () => {
             ) : (
               <div className="space-y-3 rounded-sm border border-dashed border-primary/10 py-20 text-center">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
-                  // No scrolls indexed //
+                  // No documents saved //
                 </p>
                 {!user ? (
                   <p className="font-body text-xs italic text-primary/30">
@@ -306,7 +306,7 @@ const SessionHistory = () => {
                   <button
                     onClick={() => handleDeleteLog(log.id)}
                     className="flex shrink-0 items-center gap-2 rounded-sm border border-red-500/20 bg-red-500/10 p-2 text-red-400 opacity-0 transition-all transition-opacity hover:bg-red-500/20 group-hover:opacity-100"
-                    title="Erase Memory"
+                    title="Delete Log"
                   >
                     <Trash2 className="h-3 w-3" />
                   </button>
@@ -316,7 +316,7 @@ const SessionHistory = () => {
           ) : (
             <div className="rounded-sm border border-dashed border-primary/10 py-20 text-center">
               <p className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
-                // Neural logs empty //
+                // Voice activity logs empty //
               </p>
             </div>
           )}

@@ -4,24 +4,24 @@ import { Shield, Lock, Eye, CheckCircle, RefreshCcw } from "lucide-react";
 const Security = () => {
   const protocols = [
     {
-      title: "Quantum Encryption",
+      title: "AES-256 Encryption",
       status: "Active",
-      desc: "Military-grade 256-bit AES encryption applied to all transient document nodes.",
+      desc: "Industry-standard 256-bit AES encryption is applied to all active document sessions.",
     },
     {
       title: "Volatile Memory Wipe",
       status: "Enabled",
-      desc: "Session data is purged from local hardware upon ritual termination.",
+      desc: "Session data is securely cleared from local storage once you exit.",
     },
     {
-      title: "Neural Guard",
+      title: "Local Voice Processing",
       status: "Active",
-      desc: "Voice patterns are processed locally; biometric signatures never traverse the network.",
+      desc: "Voice commands are processed entirely locally on your machine for maximum privacy.",
     },
   ];
 
   return (
-    <Layout title="Security" subtitle="Armor_Protocols" icon={Shield}>
+    <Layout title="Security" subtitle="Security Center" icon={Shield}>
       <div className="space-y-10">
         <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-sm border border-accent/20 bg-accent/5 p-8">
           <div className="animate-spin-slow absolute right-2 top-2 opacity-20">
@@ -31,10 +31,10 @@ const Security = () => {
             <Lock className="h-8 w-8 text-accent" />
           </div>
           <h3 className="mb-2 font-heading text-lg uppercase tracking-[0.2em] text-primary">
-            Core Integrity: Level 1
+            Security Status: Fully Secure
           </h3>
           <p className="font-mono text-[10px] uppercase tracking-widest text-accent">
-            Encryption_Status: UNBREAKABLE
+            Encryption Status: Active
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const Security = () => {
           <div className="group flex cursor-pointer flex-col items-center justify-center rounded-sm border border-dashed border-primary/20 bg-transparent p-6 text-center transition-all hover:border-accent/40">
             <RefreshCcw className="mb-3 h-6 w-6 text-primary/40 transition-all duration-700 group-hover:rotate-180 group-hover:text-accent" />
             <span className="font-tech text-[10px] uppercase tracking-widest text-primary/60">
-              Rotate_Encryption_Keys
+              Rotate Encryption Keys
             </span>
           </div>
         </div>
@@ -70,12 +70,11 @@ const Security = () => {
           <Eye className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
           <div>
             <h5 className="font-tech mb-1 text-[10px] uppercase tracking-widest text-destructive">
-              Privacy_Notice
+              Privacy Notice
             </h5>
             <p className="font-body text-xs font-medium italic text-destructive/80">
               Your document content is processed entirely within your browser's
-              secure context. No sensitive data is transmitted to central neural
-              nodes.
+              secure context. No sensitive data is transmitted to our servers.
             </p>
           </div>
         </div>

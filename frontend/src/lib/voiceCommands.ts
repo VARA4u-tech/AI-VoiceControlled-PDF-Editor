@@ -119,7 +119,7 @@ const commands: CommandPattern[] = [
 
       return {
         success: true,
-        message: `Excised "${word}" from the scrolls.`,
+        message: `Deleted "${word}" from the paragraph.`,
         updatedParagraphs: updated,
         affectedIndices: [idx],
         structuredData: {
@@ -297,7 +297,7 @@ const commands: CommandPattern[] = [
   {
     pattern:
       /^(?:rewrite|format|change\s+tone\s+of)\s+paragraph\s+(\d+)\s+to\s+be\s+(professional|poetic|simple|shorter)$/i,
-    description: "The Style Alchemist (Tone Shifting)",
+    description: "Rewrite Tone (Style Adjuster)",
     example: "rewrite paragraph 1 to be professional",
     handler: (paragraphs, match) => {
       const idx = parseInt(match[1], 10) - 1;
@@ -332,13 +332,13 @@ const commands: CommandPattern[] = [
 
       return {
         success: true,
-        message: `Paragraph ${idx + 1} has been transmuted to a ${tone} tone.`,
+        message: `Paragraph ${idx + 1} has been rewritten in a ${tone} tone.`,
         updatedParagraphs: updated,
         affectedIndices: [idx],
         scribeResponse: {
           type: "info",
-          content: `Transmutation complete: Paragraph ${idx + 1} is now ${tone}.`,
-          title: "Style Alchemist",
+          content: `Tone adjustment complete: Paragraph ${idx + 1} is now ${tone}.`,
+          title: "Style Adjuster",
         },
         structuredData: {
           action: "rewrite",
@@ -374,7 +374,7 @@ const commands: CommandPattern[] = [
       }
       return {
         success: true,
-        message: `Neural_Voice: Reading ${pNum ? "paragraph " + pNum : "selected line"} aloud...`,
+        message: `Voice Assistant: Reading ${pNum ? "paragraph " + pNum : "selected line"} aloud...`,
         updatedParagraphs: paragraphs,
         structuredData: {
           action: "read",
@@ -386,7 +386,7 @@ const commands: CommandPattern[] = [
   {
     pattern:
       /^(?:translate|translation|transmute)\s+paragraph\s+(\d+)\s+(?:to|into)\s+(.+)$/i,
-    description: "Mystical Translation",
+    description: "Language Translation",
     example: "translate paragraph 1 to Telugu",
     handler: (paragraphs, match) => {
       const idx = parseInt(match[1], 10) - 1;
@@ -407,7 +407,7 @@ const commands: CommandPattern[] = [
           "ఈ అనువాదం ప్రాసెస్ చేయబడింది (This translation was processed).";
       } else if (lang.includes("hindi")) {
         translation =
-          "यह अनुवाद संसाధित किया गया था (This translation was processed).";
+          "यह अनुवाद संसाधित किया गया था (This translation was processed).";
       } else {
         translation = `[Mock ${lang} Translation of Para ${idx + 1}]`;
       }
@@ -422,8 +422,8 @@ const commands: CommandPattern[] = [
         affectedIndices: [idx],
         scribeResponse: {
           type: "info",
-          content: `Document transmuted into ${lang} script.`,
-          title: "Mystical Translation",
+          content: `Document translated into ${lang}.`,
+          title: "Translation",
         },
       };
     },

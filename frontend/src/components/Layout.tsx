@@ -33,14 +33,14 @@ const Layout = ({ children, title, subtitle, icon: Icon }: LayoutProps) => {
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           </div>
           <span className="font-tech truncate text-[10px] uppercase tracking-[0.15em]">
-            Return_to_Core
+            Back to Dashboard
           </span>
         </Link>
 
         <div className="flex shrink-0 items-center gap-1.5">
           <Sparkles className="h-3.5 w-3.5 animate-pulse text-accent" />
           <span className="whitespace-nowrap font-mono text-[8px] uppercase tracking-widest text-accent/60 sm:text-[9px]">
-            System_Active: Protocol_4.2
+            System Status: Active
           </span>
         </div>
       </header>

@@ -62,16 +62,16 @@ const SystemSettings = () => {
       "scribe_settings",
       JSON.stringify({ volume, ambience, options, language }),
     );
-    toast.success("Settings committed to neural core.");
+    toast.success("Settings saved successfully.");
   };
 
   return (
-    <Layout title="Settings" subtitle="Control_Panel" icon={Settings}>
+    <Layout title="Settings" subtitle="User Preferences" icon={Settings}>
       <div className="space-y-10">
         <section className="space-y-6">
           <h3 className="font-tech flex items-center gap-2 border-b border-primary/10 pb-2 text-xs uppercase tracking-widest text-primary">
             <Volume2 className="h-4 w-4 text-accent" />
-            Audio_Configuration
+            Audio Settings
           </h3>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="space-y-4">
@@ -106,7 +106,7 @@ const SystemSettings = () => {
         <section className="space-y-6">
           <h3 className="font-tech flex items-center gap-2 border-b border-primary/10 pb-2 text-xs uppercase tracking-widest text-primary">
             <Globe className="h-4 w-4 text-accent" />
-            Language_Configuration
+            Language Settings
           </h3>
           <div className="max-w-md space-y-4">
             <label className="block font-mono text-[10px] uppercase text-primary/40">
@@ -148,7 +148,7 @@ const SystemSettings = () => {
         <section className="space-y-6">
           <h3 className="font-tech flex items-center gap-2 border-b border-primary/10 pb-2 text-xs uppercase tracking-widest text-primary">
             <Mic className="h-4 w-4 text-accent" />
-            Voice_Engine_Options
+            Voice Settings
           </h3>
           <div className="space-y-4">
             {options.map((option) => (
@@ -180,20 +180,20 @@ const SystemSettings = () => {
         <section className="space-y-6">
           <h3 className="font-tech flex items-center gap-2 border-b border-primary/10 pb-2 text-xs uppercase tracking-widest text-primary">
             <Palette className="h-4 w-4 text-accent" />
-            Aesthetic_Manifestation
+            Interface Themes
           </h3>
           <div className="flex gap-4">
             <div
               className="h-10 w-10 cursor-pointer rounded-sm border-2 border-accent bg-background"
-              title="Emerald Protocol"
+              title="Emerald Theme"
             />
             <div
               className="h-10 w-10 cursor-pointer rounded-sm border border-primary/20 bg-slate-900"
-              title="Obsidian Core"
+              title="Obsidian Theme"
             />
             <div
               className="h-10 w-10 cursor-pointer rounded-sm border border-primary/20 bg-blue-950"
-              title="Deep Azure"
+              title="Azure Theme"
             />
           </div>
         </section>
@@ -204,7 +204,7 @@ const SystemSettings = () => {
             className="font-tech group flex items-center gap-2 border border-accent/40 bg-accent/20 px-8 py-3 text-[11px] uppercase tracking-widest text-accent transition-all hover:bg-accent/30"
           >
             <Save className="h-4 w-4" />
-            Commit_Changes
+            Save Settings
           </button>
         </div>
       </div>

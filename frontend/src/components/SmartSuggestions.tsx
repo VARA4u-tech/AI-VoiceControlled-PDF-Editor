@@ -103,7 +103,7 @@ const SmartSuggestions = ({
       <div className="mb-3 flex items-center gap-2">
         <Sparkles className="h-3 w-3 text-accent/60" />
         <span className="font-tech text-[9px] uppercase tracking-[0.25em] text-primary/40">
-          Neural_Suggestions
+          AI Suggestions
         </span>
         {loading && (
           <Loader2 className="ml-1 h-3 w-3 animate-spin text-accent/40" />

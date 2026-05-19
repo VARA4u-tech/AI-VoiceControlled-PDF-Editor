@@ -204,7 +204,7 @@ const PreviewArea = ({
                 <Wand2 className="mt-1 h-6 w-6 shrink-0 text-primary transition-all group-hover:-rotate-12 group-hover:text-accent" />
                 <div>
                   <h4 className="font-tech mb-2 text-xs font-bold uppercase tracking-widest text-primary/80">
-                    Neural Rewrite
+                    AI Rewrite
                   </h4>
                   <p className="font-mono text-xs leading-snug text-foreground/70">
                     "Elevate tone for segment 1"
@@ -443,7 +443,7 @@ const PreviewArea = ({
                                 className="font-tech flex h-10 items-center justify-center gap-2 border border-accent/40 bg-accent/20 px-4 text-[10px] uppercase tracking-[0.2em] text-accent transition-all hover:bg-accent/30"
                               >
                                 <Mic className="h-3 w-3" />
-                                Vocal_Command
+                                Voice Command
                               </button>
                               <button
                                 onClick={(e) => {
@@ -454,7 +454,7 @@ const PreviewArea = ({
                                 className="font-tech flex h-10 items-center justify-center gap-2 border border-primary/40 bg-primary/20 px-4 text-[10px] uppercase tracking-[0.2em] text-primary transition-all hover:bg-primary/30"
                               >
                                 <Pencil className="h-3 w-3" />
-                                Manual_Edit
+                                Manual Edit
                               </button>
                               <button
                                 onClick={(e) => {

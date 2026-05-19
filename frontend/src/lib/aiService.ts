@@ -56,7 +56,7 @@ export async function processChatOnly(
   const { data } = await supabase.auth.getSession();
   const token = data.session?.access_token;
 
-  if (!token) return "Authentication required to connect to the Oracle.";
+  if (!token) return "Authentication is required. Please log in.";
 
   const documentContext = buildSmartDocumentContext(paragraphs, message, 5);
 
@@ -81,15 +81,15 @@ export async function processChatOnly(
       }),
     });
 
-    if (!response.ok) throw new Error("Signal interference.");
+    if (!response.ok) throw new Error("API Connection failed.");
 
     const data = await response.json();
     return (
-      data.choices?.[0]?.message?.content?.trim() || "The oracle is silent."
+      data.choices?.[0]?.message?.content?.trim() || "No response received from the AI service."
     );
   } catch (error) {
     console.error("Chat API Error:", error);
-    return "The neural link encountered an error during transmission.";
+    return "The AI service encountered an error. Please try again.";
   }
 }
 
@@ -106,7 +106,7 @@ export async function processCommandWithAI(
   if (!token) {
     return {
       success: false,
-      message: "Authentication required to connect to the Oracle.",
+      message: "Authentication is required. Please log in.",
       updatedParagraphs: paragraphs,
     };
   }
@@ -135,7 +135,7 @@ export async function processCommandWithAI(
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       console.log(
-        `Scribe_Core: Transmitting Signal (attempt ${attempt + 1})...`,
+        `Scribe Core: Processing request (attempt ${attempt + 1})...`,
         command,
       );
 
@@ -170,14 +170,14 @@ export async function processCommandWithAI(
         return {
           success: false,
           message:
-            "The oracle is overwhelmed. Please wait a moment and try again.",
+            "The service is busy. Please try again in a moment.",
           updatedParagraphs: paragraphs,
         };
       }
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error?.message || "Signal interference.");
+        throw new Error(errorData.error?.message || "API Connection failed.");
       }
 
       const data = await response.json();
@@ -199,7 +199,7 @@ export async function processCommandWithAI(
         console.error("AI Response Parsing Error:", aiContent);
         return {
           success: false,
-          message: "The Oracle's transmission was corrupted.",
+          message: "The AI response could not be parsed.",
           updatedParagraphs: paragraphs,
         };
       }
@@ -208,7 +208,7 @@ export async function processCommandWithAI(
         console.error("AI Direct API Error:", error);
         return {
           success: false,
-          message: `Neural link instability: ${error instanceof Error ? error.message : "Spectral interference"}`,
+          message: `Connection unstable: ${error instanceof Error ? error.message : "Service error"}`,
           updatedParagraphs: paragraphs,
         };
       }
