@@ -64,13 +64,13 @@ const Signup = () => {
 
     // ── Validation Protocols ──
     if (password.length < 6) {
-      toast.error("Access_Key must be at least 6 characters.");
+      toast.error("Password must be at least 6 characters.");
       playError();
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error("Access_Key mismatch. Verify neural signals.");
+      toast.error("Passwords do not match. Please verify.");
       playError();
       return;
     }
@@ -92,18 +92,18 @@ const Signup = () => {
       toast.error(error.message);
       playError();
     } else {
-      toast.success("Initiation complete. Check your email.");
+      toast.success("Registration complete. Please check your email.");
       playSuccess();
     }
     setLoading(false);
   };
 
   return (
-    <Layout title="Initiation" subtitle="Auth_Terminal" icon={ShieldCheck}>
+    <Layout title="Create Account" subtitle="Authentication Portal" icon={ShieldCheck}>
       <div className="mx-auto max-w-md space-y-8">
         <div className="space-y-2 text-center">
           <p className="font-body text-sm italic text-foreground/60">
-            Register your biometric signals with the Gilded Scribe.
+            Register your details to create a secure account.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ const Signup = () => {
               <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary/40" />
               <input
                 type="text"
-                placeholder="Identity_Name"
+                placeholder="Full Name"
                 value={fullName}
                 onChange={handleFullNameChange}
                 required
@@ -124,7 +124,7 @@ const Signup = () => {
               <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary/40" />
               <input
                 type="email"
-                placeholder="Email_Hash"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -137,7 +137,7 @@ const Signup = () => {
               />
               <input
                 type="password"
-                placeholder="Access_Key (Min 6 chars)"
+                placeholder="Password (Min 6 chars)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -156,7 +156,7 @@ const Signup = () => {
               />
               <input
                 type="password"
-                placeholder="Confirm_Access_Key"
+                placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -165,7 +165,7 @@ const Signup = () => {
               {showMismatch && (
                 <div className="absolute -bottom-5 left-0 w-full text-center">
                   <span className="font-tech animate-pulse text-[8px] uppercase tracking-widest text-red-500">
-                    Neural_Signal_Mismatch
+                    Passwords Do Not Match
                   </span>
                 </div>
               )}
@@ -181,7 +181,7 @@ const Signup = () => {
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-accent border-t-transparent" />
             ) : (
               <>
-                Sign_Up_Scribe <UserPlus className="h-4 w-4" />
+                Sign Up <UserPlus className="h-4 w-4" />
               </>
             )}
           </button>
@@ -192,7 +192,7 @@ const Signup = () => {
             </div>
             <div className="font-tech relative flex justify-center text-[8px] uppercase tracking-widest">
               <span className="bg-background px-4 text-primary/40">
-                Alternative_Auth_Protocols
+                Or Continue With
               </span>
             </div>
           </div>
@@ -229,7 +229,7 @@ const Signup = () => {
             to="/login"
             className="font-mono text-[10px] uppercase tracking-widest text-primary/40 transition-colors hover:text-primary"
           >
-            // Switch to Login_Link
+            Already have an account? Login
           </Link>
         </div>
       </div>

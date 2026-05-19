@@ -42,15 +42,14 @@ const Footer = () => {
               </div>
             </Link>
             <p className="mt-2 font-body text-xs font-medium leading-relaxed text-foreground/80">
-              Advanced Neural Processing for elite document synthesis and vocal
-              command modulation.
+              Advanced voice recognition and AI document editing platform designed to make document editing fast and hands-free.
             </p>
             <div className="mt-2 flex gap-4">
               <a
                 href="https://github.com/VARA4u-tech"
                 className="rounded-sm border border-primary/10 p-2 text-primary/70 transition-all hover:border-accent/30 hover:text-accent"
                 onMouseEnter={() => playHover()}
-                title="GitHub Archive"
+                title="GitHub"
               >
                 <Github className="h-4 w-4" />
               </a>
@@ -58,7 +57,7 @@ const Footer = () => {
                 href="https://www.instagram.com/d_v_p6/"
                 className="rounded-sm border border-primary/10 p-2 text-primary/70 transition-all hover:border-accent/30 hover:text-accent"
                 onMouseEnter={() => playHover()}
-                title="Neural Stream"
+                title="Instagram"
               >
                 <Instagram className="h-4 w-4" />
               </a>
@@ -66,7 +65,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/durga-vara-prasad-pappuri-1797701b6"
                 className="rounded-sm border border-primary/10 p-2 text-primary/70 transition-all hover:border-accent/30 hover:text-accent"
                 onMouseEnter={() => playHover()}
-                title="Neural Stream"
+                title="LinkedIn"
               >
                 <LinkedinIcon className="h-4 w-4" />
               </a>
@@ -76,14 +75,14 @@ const Footer = () => {
           {/* Navigation links */}
           <div className="col-span-1">
             <h4 className="font-tech mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
-              Core_Archives
+              Navigation
             </h4>
             <ul className="space-y-3">
               {[
                 { label: "Dashboard", to: "/", icon: Cpu },
-                { label: "History_Logs", to: "/history", icon: History },
-                { label: "System_Config", to: "/settings", icon: Settings },
-                { label: "Intel_Hub", to: "/intel", icon: HelpCircle },
+                { label: "History", to: "/history", icon: History },
+                { label: "Settings", to: "/settings", icon: Settings },
+                { label: "Help Center", to: "/intel", icon: HelpCircle },
               ].map((link, i) => (
                 <li key={i}>
                   <Link
@@ -105,7 +104,7 @@ const Footer = () => {
           {/* Protocol info */}
           <div className="col-span-1">
             <h4 className="font-tech mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
-              System_Integrity
+              System Status
             </h4>
             <div className="space-y-4">
               <div className="flex flex-col gap-1.5 rounded-sm border border-primary/10 bg-primary/5 p-3">
@@ -114,7 +113,7 @@ const Footer = () => {
                     Status:
                   </span>
                   <span className="flex animate-pulse items-center gap-1 font-mono text-[9px] uppercase tracking-tighter text-emerald-400">
-                    <ShieldCheck className="h-2.5 w-2.5" /> SECURE_CORE
+                    <ShieldCheck className="h-2.5 w-2.5" /> SECURE
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -128,10 +127,10 @@ const Footer = () => {
                 <div className="my-1 h-[1px] w-full bg-primary/10" />
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[9px] uppercase tracking-tighter text-primary/70">
-                    Ver:
+                    Version:
                   </span>
                   <span className="font-mono text-[9px] uppercase tracking-tighter text-primary/90">
-                    V4.2.0-Scribe
+                    v4.2.0
                   </span>
                 </div>
               </div>
@@ -141,7 +140,7 @@ const Footer = () => {
           {/* Contact / Support */}
           <div className="col-span-1">
             <h4 className="font-tech mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
-              Neural_Support
+              Support & Help
             </h4>
             <button
               className="font-tech group mb-4 flex w-full items-center justify-center gap-2 rounded-sm border border-primary/20 bg-primary/5 p-3 text-[9px] uppercase tracking-widest text-primary/80 transition-all hover:border-accent hover:bg-accent/5 hover:text-accent"
@@ -151,8 +150,7 @@ const Footer = () => {
               <ExternalLink className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-[-0.5px]" />
             </button>
             <p className="font-body text-[10px] italic leading-relaxed text-foreground/60">
-              * Ritual assistance available through the encrypted channel
-              mdxxvi.core
+              * Dedicated support available for enterprise integration and usage queries.
             </p>
           </div>
         </div>
@@ -164,10 +162,10 @@ const Footer = () => {
               Built and Engineered with Love by VARA
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary/70">
-              © 2026 - 2027 VOICE CONTROLLED PDF EDITOR ARCHIVE
+              © 2026 - 2027 VOICE CONTROLLED PDF EDITOR
             </p>
             <p className="font-mono text-[8px] uppercase tracking-[0.3em] text-primary/50">
-              All Transmissions Decrypted // Locally Processed
+              All Data Encrypted // Locally Processed
             </p>
           </div>
           <div className="flex items-center gap-6">
@@ -175,19 +173,19 @@ const Footer = () => {
               to="/privacy"
               className="font-tech text-[9px] uppercase tracking-widest text-primary/60 transition-colors hover:text-primary"
             >
-              Privacy_Seal
+              Privacy Policy
             </Link>
             <Link
               to="/terms"
               className="font-tech text-[9px] uppercase tracking-widest text-primary/60 transition-colors hover:text-primary"
             >
-              Terms_of_Sync
+              Terms of Service
             </Link>
             <Link
               to="/logs"
               className="font-tech text-[9px] uppercase tracking-widest text-primary/60 transition-colors hover:text-primary"
             >
-              Root_Log
+              System Logs
             </Link>
           </div>
         </div>

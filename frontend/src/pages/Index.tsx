@@ -190,7 +190,7 @@ const Index = () => {
               .eq("id", data.id)
               .then(({ error }) => {
                 if (error)
-                  console.error("Ritual_Backup Update Failed:", error.message);
+                  console.error("Backup Update Failed:", error.message);
               });
           } else {
             supabase
@@ -812,7 +812,7 @@ const Index = () => {
       setCommandSuccess(false);
       playError();
     } else {
-      setCommandFeedback(`Version "${label}" sealed in the archive.`);
+      setCommandFeedback(`Version "${label}" saved in history.`);
       setCommandSuccess(true);
       playSuccess();
     }
@@ -857,7 +857,7 @@ const Index = () => {
     const token = authData.session?.access_token;
 
     if (!token) {
-      setCommandFeedback("Authentication required to conjure a title.");
+      setCommandFeedback("Authentication required to generate a title.");
       setCommandSuccess(false);
       playError();
       clearFeedback();
@@ -894,7 +894,7 @@ const Index = () => {
         if (suggested) {
           titleCache.set("auto-title", fp, suggested);
           setFileName(suggested);
-          setCommandFeedback(`Title conjured: "${suggested}"`);
+          setCommandFeedback(`Title generated: "${suggested}"`);
           setCommandSuccess(true);
           playSuccess();
           clearFeedback();
@@ -963,7 +963,7 @@ const Index = () => {
             className="font-tech flex items-center gap-2.5 border border-accent/30 bg-background/80 px-6 py-2.5 text-[10px] uppercase tracking-[0.25em] text-accent shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:bg-accent/10"
           >
             <X className="h-3.5 w-3.5" />
-            Exit_Focus · Esc
+            Exit Focus · Esc
           </button>
         </div>
       )}
@@ -1023,7 +1023,7 @@ const Index = () => {
                 className="font-tech group flex items-center gap-2 rounded-sm border border-primary/20 bg-slate-950/80 px-3 py-1.5 text-[9px] uppercase tracking-widest text-primary/80 backdrop-blur-xl transition-all duration-300 hover:border-primary/40 hover:text-primary sm:px-4 sm:py-2 sm:text-[10px]"
               >
                 <LogIn className="h-3 w-3 text-primary/40 transition-colors group-hover:text-accent sm:h-3.5 sm:w-3.5" />
-                Login_Connection
+                Login
               </Link>
               <Link
                 to="/signup"
@@ -1031,7 +1031,7 @@ const Index = () => {
                 className="font-tech group flex items-center gap-2 rounded-sm border border-accent/20 bg-accent/5 px-3 py-1.5 text-[9px] uppercase tracking-widest text-accent/80 shadow-[0_0_15px_rgba(255,215,0,0.15)] backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:text-accent sm:px-4 sm:py-2 sm:text-[10px]"
               >
                 <UserPlus className="h-3 w-3 text-accent/40 transition-colors group-hover:text-accent sm:h-3.5 sm:w-3.5" />
-                Sign_Up_Protocol
+                Sign Up
               </Link>
             </div>
           )}
@@ -1116,7 +1116,7 @@ const Index = () => {
                   ) : (
                     <Wand2 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-12" />
                   )}
-                  {isGeneratingTitle ? "Conjuring..." : "Auto_Title"}
+                  {isGeneratingTitle ? "Generating..." : "Suggest Title"}
                 </button>
 
                 {/* Save Version Button — only when logged in */}
@@ -1124,13 +1124,13 @@ const Index = () => {
                   <button
                     onClick={() => setShowVersionModal(true)}
                     onMouseEnter={() => playHover()}
-                    title="Save Version to Archive"
+                    title="Save Version to History"
                     className="font-tech group relative flex w-full animate-fade-in cursor-pointer items-center justify-center gap-2 overflow-hidden border border-primary/20 bg-primary/5 px-5 py-2.5 text-[10px] uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-accent hover:bg-accent/5 hover:text-accent sm:w-auto sm:py-3 sm:text-[11px]"
                   >
                     <div className="tech-bracket-tl h-1 w-1" />
                     <div className="tech-bracket-br h-1 w-1" />
                     <Save className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />
-                    Save_Version
+                    Save Version
                   </button>
                 )}
 
@@ -1147,7 +1147,7 @@ const Index = () => {
                   ) : (
                     <Download className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
                   )}
-                  {isExporting ? "Sealing..." : "Export_Out"}
+                  {isExporting ? "Exporting..." : "Export PDF"}
                 </button>
 
                 <button
@@ -1291,7 +1291,7 @@ const Index = () => {
           <div className="mb-4 w-full animate-fade-in overflow-hidden rounded-sm border border-primary/10 bg-primary/5">
             <div className="flex items-center justify-between border-b border-primary/10 bg-primary/5 px-4 py-2">
               <span className="font-tech text-[9px] uppercase tracking-widest text-primary/40">
-                Edit_Timeline — {history.length} snapshot
+                Edit History — {history.length} snapshot
                 {history.length !== 1 ? "s" : ""}
               </span>
               <button
@@ -1400,7 +1400,7 @@ const Index = () => {
             <div className="tech-bracket-bl" />
             <div className="tech-bracket-br" />
             <h2 className="font-tech mb-2 text-sm uppercase tracking-[0.3em] text-primary">
-              Seal Version to Archive
+              Save Version to History
             </h2>
             <p className="mb-6 font-mono text-[10px] text-primary/40">
               // Leave blank for auto-timestamp label
@@ -1437,7 +1437,7 @@ const Index = () => {
                 ) : (
                   <Save className="h-3 w-3" />
                 )}
-                {isSavingVersion ? "Sealing..." : "Seal_Version"}
+                {isSavingVersion ? "Saving..." : "Save Version"}
               </button>
             </div>
           </div>

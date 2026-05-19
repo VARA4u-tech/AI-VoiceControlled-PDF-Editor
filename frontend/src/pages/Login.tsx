@@ -51,7 +51,7 @@ const Login = () => {
       toast.error(error.message);
       playError();
     } else {
-      toast.success("Welcome back, Scribe.");
+      toast.success("Welcome back.");
       playSuccess();
       navigate("/");
     }
@@ -60,11 +60,11 @@ const Login = () => {
 
   if (user) {
     return (
-      <Layout title="Neural_Link" subtitle="Auth_Terminal" icon={ShieldCheck}>
+      <Layout title="Secure Login" subtitle="Authentication Portal" icon={ShieldCheck}>
         <div className="mx-auto max-w-md space-y-6 text-center">
           <div className="rounded-sm border border-accent/20 bg-accent/5 p-8">
             <h3 className="font-tech mb-2 text-xs uppercase tracking-widest text-accent">
-              Neural_Link_Active
+              Account Connected
             </h3>
             <p className="mb-6 font-mono text-[10px] text-primary/60">
               You are already connected as {user.email}
@@ -74,13 +74,13 @@ const Login = () => {
                 onClick={() => navigate("/")}
                 className="font-tech w-full border border-primary/20 bg-primary/10 py-3 text-[10px] uppercase tracking-widest text-primary transition-all hover:bg-primary/20"
               >
-                Return_to_Core
+                Go to Dashboard
               </button>
               <button
                 onClick={() => signOut()}
                 className="font-tech w-full border border-red-500/20 py-3 text-[10px] uppercase tracking-widest text-red-500/60 transition-all hover:bg-red-500/10"
               >
-                Sever_Neural_Link
+                Logout
               </button>
             </div>
           </div>
@@ -90,11 +90,11 @@ const Login = () => {
   }
 
   return (
-    <Layout title="Neural_Link" subtitle="Auth_Terminal" icon={ShieldCheck}>
+    <Layout title="Secure Login" subtitle="Authentication Portal" icon={ShieldCheck}>
       <div className="mx-auto max-w-md space-y-8">
         <div className="space-y-2 text-center">
           <p className="font-body text-sm italic text-foreground/60">
-            Establish a secure connection to your archives.
+            Access your secure voice-controlled editing environment.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ const Login = () => {
               <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary/40" />
               <input
                 type="email"
-                placeholder="Email_Hash"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -115,7 +115,7 @@ const Login = () => {
               <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary/40" />
               <input
                 type="password"
-                placeholder="Access_Key"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -133,7 +133,7 @@ const Login = () => {
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-accent border-t-transparent" />
             ) : (
               <>
-                Establish_Connection <LogIn className="h-4 w-4" />
+                Login <LogIn className="h-4 w-4" />
               </>
             )}
           </button>
@@ -144,7 +144,7 @@ const Login = () => {
             </div>
             <div className="font-tech relative flex justify-center text-[8px] uppercase tracking-widest">
               <span className="bg-background px-4 text-primary/40">
-                Alternative_Auth_Protocols
+                Or Continue With
               </span>
             </div>
           </div>
@@ -172,7 +172,7 @@ const Login = () => {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z"
               />
             </svg>
-            Sync_Google_Login
+            Sign in with Google
           </button>
         </form>
 
@@ -181,7 +181,7 @@ const Login = () => {
             to="/signup"
             className="font-mono text-[10px] uppercase tracking-widest text-primary/40 transition-colors hover:text-primary"
           >
-            // Switch to Sign_Up_Protocol
+            Don't have an account? Sign Up
           </Link>
         </div>
       </div>

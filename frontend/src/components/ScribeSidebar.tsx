@@ -114,12 +114,12 @@ const ScribeSidebar = ({
           <div className="flex items-center justify-between p-8 pb-4">
             <div>
               <h2 className="gold-text-glow font-heading text-xl font-bold uppercase tracking-[0.2em] text-primary">
-                Smart Center
+                Assistant Panel
               </h2>
               <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-accent/60">
                 {user
-                  ? `// Identity: ${user.email?.split("@")[0]}`
-                  : "// System: Active"}
+                  ? `// User: ${user.email}`
+                  : "// Status: Active"}
               </p>
             </div>
             <div className="flex items-center gap-2">
