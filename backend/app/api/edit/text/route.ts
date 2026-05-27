@@ -15,7 +15,10 @@ export async function POST(req: Request) {
     try {
       await limiter.check(20, ip); // 20 requests per minute
     } catch {
-      return NextResponse.json({ detail: "Rate limit exceeded" }, { status: 429 });
+      return NextResponse.json(
+        { detail: "Rate limit exceeded" },
+        { status: 429 },
+      );
     }
 
     // 1. Authenticate

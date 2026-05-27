@@ -1,4 +1,4 @@
-import { LRUCache } from 'lru-cache';
+import { LRUCache } from "lru-cache";
 
 interface RateLimitOptions {
   uniqueTokenPerInterval?: number;
@@ -24,7 +24,7 @@ export default function rateLimit(options?: RateLimitOptions) {
         const isRateLimited = currentUsage > limit;
 
         if (isRateLimited) {
-          reject('Rate limit exceeded');
+          reject("Rate limit exceeded");
         } else {
           resolve();
         }
