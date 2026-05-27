@@ -275,6 +275,27 @@ const Index = () => {
         selectedParagraphIndex,
       );
 
+      // 2.5 Intercept async local commands (like detect language)
+      if (
+        result.success &&
+        result.structuredData?.action === "detect_language" &&
+        result.structuredData.target
+      ) {
+        try {
+          const { detectLanguage } = await import("@/lib/aiService");
+          const lang = await detectLanguage(result.structuredData.target);
+          result.message = `Language detected: ${lang}`;
+          result.scribeResponse = {
+            type: "info",
+            title: "Language Detection",
+            content: `The selected text is written in **${lang}**.`,
+          };
+        } catch (e) {
+          result.success = false;
+          result.message = "Failed to detect language.";
+        }
+      }
+
       // 3. Fallback to AI (LLM) if regex didn't recognize it
       if (!result.success && result.message.includes("Not recognized")) {
         const targetParagraphs =

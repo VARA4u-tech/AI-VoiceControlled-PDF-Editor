@@ -296,55 +296,24 @@ const commands: CommandPattern[] = [
 
   {
     pattern:
-      /^(?:rewrite|format|change\s+tone\s+of)\s+paragraph\s+(\d+)\s+to\s+be\s+(professional|poetic|simple|shorter)$/i,
-    description: "Rewrite Tone (Style Adjuster)",
-    example: "rewrite paragraph 1 to be professional",
-    handler: (paragraphs, match) => {
-      const idx = parseInt(match[1], 10) - 1;
-      const tone = match[2].toLowerCase();
-
-      if (idx < 0 || idx >= paragraphs.length) {
+      /^(?:rewrite|format|change\s+tone\s+of)(?:\s+the)?\s+(?:selected\s+)?(?:line|paragraph|text|sentence)\s+to\s+be\s+(.+)$/i,
+    description: "Rewrite Tone (AI)",
+    example: "rewrite the selected text to be professional",
+    handler: (paragraphs, match, selectedParagraphIndex) => {
+      if (
+        selectedParagraphIndex === null ||
+        selectedParagraphIndex === undefined
+      ) {
         return {
           success: false,
-          message: `Paragraph ${idx + 1} does not exist.`,
+          message: "Please select a specific line/paragraph first.",
           updatedParagraphs: paragraphs,
         };
       }
-
-      const original = paragraphs[idx];
-      let rewritten = original;
-
-      // Simulated AI Tone Shifting logic
-      if (tone === "professional") {
-        rewritten = `It should be noted that ${original.charAt(0).toLowerCase()}${original.slice(1).replace(/[!?]/g, ".")}`;
-        if (!rewritten.endsWith(".")) rewritten += " regarding this matter.";
-      } else if (tone === "poetic") {
-        rewritten = `Like gold upon velvet, ${original.charAt(0).toLowerCase()}${original.slice(1)}`;
-      } else if (tone === "simple") {
-        rewritten = original.split(".")[0] + ". Basically, it means this.";
-      } else if (tone === "shorter") {
-        rewritten =
-          original.slice(0, Math.floor(original.length * 0.6)) + "...";
-      }
-
-      const updated = [...paragraphs];
-      updated[idx] = rewritten;
-
       return {
-        success: true,
-        message: `Paragraph ${idx + 1} has been rewritten in a ${tone} tone.`,
-        updatedParagraphs: updated,
-        affectedIndices: [idx],
-        scribeResponse: {
-          type: "info",
-          content: `Tone adjustment complete: Paragraph ${idx + 1} is now ${tone}.`,
-          title: "Style Adjuster",
-        },
-        structuredData: {
-          action: "rewrite",
-          target: `paragraph ${idx + 1}`,
-          replacement: tone,
-        },
+        success: false,
+        message: "Not recognized. Route to AI",
+        updatedParagraphs: paragraphs,
       };
     },
   },
@@ -385,46 +354,51 @@ const commands: CommandPattern[] = [
   },
   {
     pattern:
-      /^(?:translate|translation|transmute)\s+paragraph\s+(\d+)\s+(?:to|into)\s+(.+)$/i,
-    description: "Language Translation",
-    example: "translate paragraph 1 to Telugu",
-    handler: (paragraphs, match) => {
-      const idx = parseInt(match[1], 10) - 1;
-      const lang = match[2].toLowerCase();
-
-      if (idx < 0 || idx >= paragraphs.length) {
+      /^(?:translate|translation|transmute)(?:\s+the)?\s+(?:selected\s+)?(?:text|line|paragraph|sentence)\s+(?:to|into)\s+(.+)$/i,
+    description: "Language Translation (AI)",
+    example: "translate the selected text to Hindi",
+    handler: (paragraphs, match, selectedParagraphIndex) => {
+      if (
+        selectedParagraphIndex === null ||
+        selectedParagraphIndex === undefined
+      ) {
         return {
           success: false,
-          message: `Paragraph ${idx + 1} does not exist.`,
+          message: "Please select a specific line/paragraph first.",
           updatedParagraphs: paragraphs,
         };
       }
-
-      // Mock Translation Logic
-      let translation = "[Translation Service Offline]";
-      if (lang.includes("telugu")) {
-        translation =
-          "ఈ అనువాదం ప్రాసెస్ చేయబడింది (This translation was processed).";
-      } else if (lang.includes("hindi")) {
-        translation =
-          "यह अनुवाद संसाधित किया गया था (This translation was processed).";
-      } else {
-        translation = `[Mock ${lang} Translation of Para ${idx + 1}]`;
-      }
-
-      const updated = [...paragraphs];
-      updated[idx] = translation;
-
       return {
-        success: true,
-        message: `Paragraph ${idx + 1} translated to ${lang}.`,
-        updatedParagraphs: updated,
-        affectedIndices: [idx],
-        scribeResponse: {
-          type: "info",
-          content: `Document translated into ${lang}.`,
-          title: "Translation",
-        },
+        success: false,
+        message: "Not recognized. Route to AI",
+        updatedParagraphs: paragraphs,
+      };
+    },
+  },
+  {
+    pattern:
+      /^(?:detect|what|which)(?:\s+is\s+the)?\s+language(?:\s+of)?(?:\s+the)?\s+(?:selected\s+)?(?:text|line|paragraph|sentence)$/i,
+    description: "Detect Language (NLP)",
+    example: "detect language of the selected text",
+    handler: (paragraphs, match, selectedParagraphIndex) => {
+      if (
+        selectedParagraphIndex === null ||
+        selectedParagraphIndex === undefined
+      ) {
+        return {
+          success: false,
+          message: "Please select a specific line/paragraph first.",
+          updatedParagraphs: paragraphs,
+        };
+      }
+      return {
+        success: true, // We intercept this in Index.tsx
+        message: "Detecting language...",
+        updatedParagraphs: paragraphs,
+        structuredData: {
+          action: "detect_language",
+          target: paragraphs[selectedParagraphIndex],
+        }
       };
     },
   },

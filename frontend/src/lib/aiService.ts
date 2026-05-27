@@ -105,6 +105,8 @@ RULES:
 4. For "delete word X", find the word X in the paragraphs and remove it. Keep surrounding punctuation and spacing clean.
 5. For "add word X", append the text X to the specified paragraph or the end of the line.
 6. For grammar check: detect errors, highlight using: <mark class='bg-red-500/20 text-red-500 px-1 rounded'>mistake</mark>.
+7. For "translate", "rewrite", "simplify", or "summarize", apply the transformation to the requested paragraph(s) and return the modified text in updatedParagraphs. 
+8. If asked for a summary, put the summary text inside the scribeResponse.content and DO NOT modify updatedParagraphs.
 JSON format:
 {
   "success": boolean,
@@ -112,7 +114,7 @@ JSON format:
   "updatedParagraphs": string[],
   "affectedIndices": number[],
   "scribeResponse": {"type":"summary"|"stats"|"info", "content":"result", "title":"title"},
-  "structuredData": {"action":"delete|replace|add", "target":"string", "replacement":"string"}
+  "structuredData": {"action":"delete|replace|add|rewrite|translate", "target":"string", "replacement":"string"}
 }
 EXAMPLES:
 - User: "Delete hello" -> {"success":true, "message":"Word 'hello' excised.", "updatedParagraphs":["..."], "affectedIndices":[...]}
@@ -128,6 +130,30 @@ Speak in a normal, natural, and easy-to-understand conversational tone. Do not u
 `);
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+export async function detectLanguage(text: string): Promise<string> {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  if (!token) throw new Error("Authentication is required.");
+
+  const response = await fetch(`${backendUrl}/nlp/detect-language`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text }),
+  });
+
+  if (!response.ok) {
+    const err = await response.text().catch(() => "Unknown error");
+    throw new Error(`Language detection failed: ${err}`);
+  }
+  
+  const result = await response.json();
+  return result.detected_name || result.detected_code || "Unknown";
+}
 
 export async function processChatOnly(
   message: string,
