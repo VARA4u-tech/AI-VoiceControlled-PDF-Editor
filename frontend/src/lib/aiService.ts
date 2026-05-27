@@ -37,20 +37,14 @@ async function fetchWithFallback(
 
   for (const model of FREE_MODEL_CHAIN) {
     const body = bodyTemplate(model);
-    let response: Response;
-    try {
-      response = await fetch(`${backendUrl}/edit/chat`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-    } catch (networkErr) {
-      // True network error (backend down, CORS) — no point trying other models
-      throw networkErr;
-    }
+    const response = await fetch(`${backendUrl}/edit/chat`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
     // If rate-limited or model-not-found, move to the next model
     if (response.status === 429 || response.status === 404) {
