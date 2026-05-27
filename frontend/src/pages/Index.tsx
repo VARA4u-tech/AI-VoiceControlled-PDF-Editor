@@ -4,7 +4,7 @@ import GoldDivider from "@/components/GoldDivider";
 import MicButton from "@/components/MicButton";
 import UploadButton from "@/components/UploadButton";
 import StatusIndicator from "@/components/StatusIndicator";
-import PreviewArea from "@/components/PreviewArea";
+import RichTextEditor from "@/components/RichTextEditor";
 import MysticalHero from "@/components/MysticalHero";
 import CyberHero from "@/components/CyberHero";
 import ChatWidget from "@/components/ChatWidget";
@@ -1327,30 +1327,17 @@ const Index = () => {
         <div
           className={`flex w-full flex-col items-center transition-all duration-1000 ${isFocusMode ? "mt-12" : "mt-0"}`}
         >
-          <PreviewArea
-            paragraphs={paragraphs}
+          <RichTextEditor
+            content={paragraphs.length > 0 && paragraphs[0].startsWith('<') ? paragraphs.join('') : paragraphs.map(p => `<p>${p}</p>`).join('')}
             isLoading={isParsing}
-            pageCount={pageCount}
-            commandFeedback={commandFeedback}
-            commandSuccess={commandSuccess}
-            lastEditedIndices={lastEditedIndices}
-            onParagraphEdit={(idx, newText) => {
-              if (!newText || newText === paragraphs[idx]) return;
+            onChange={(html) => {
+              if (!html || html === paragraphs.join("")) return;
               setHistory((h) => [...h, paragraphs]);
-              setParagraphs((prev) => {
-                const updated = [...prev];
-                updated[idx] = newText;
-                return updated;
-              });
-              setLastEditedIndices([idx]);
-              setTimeout(() => setLastEditedIndices([]), 3000);
-              setCommandFeedback(`Segment ${idx + 1} updated manually.`);
+              setParagraphs([html]);
+              setCommandFeedback(`Document updated manually.`);
               setCommandSuccess(true);
-              playSuccess();
               clearFeedback();
             }}
-            selectedParagraphIndex={selectedParagraphIndex}
-            onSelectParagraph={handleSelectParagraph}
           />
 
           {/* Smart Suggestions — appears after each successful command */}
