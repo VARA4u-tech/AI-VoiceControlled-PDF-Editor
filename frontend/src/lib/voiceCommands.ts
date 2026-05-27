@@ -322,9 +322,26 @@ const commands: CommandPattern[] = [
     pattern:
       /^(?:read|speak|narrate)(?:\s+the)?\s+(?:selected\s+)?(?:text|line|paragraph|sentence)(?:\s+(\d+))?$/i,
     description: "Read text aloud",
-    example: "read paragraph 1",
+    example: "read the selected text",
     handler: (paragraphs, match, selectedParagraphIndex) => {
       const pNum = match[1];
+
+      // Try to get highlighted DOM text first
+      let selectedText = "";
+      if (typeof window !== "undefined") {
+        selectedText = window.getSelection()?.toString().trim() || "";
+      }
+
+      // If user didn't specify a number and has text highlighted, read the highlighted text
+      if (!pNum && selectedText) {
+        return {
+          success: true,
+          message: "Reading selected text",
+          structuredData: { action: "read", target: selectedText },
+          updatedParagraphs: paragraphs,
+        };
+      }
+
       const idx = pNum ? parseInt(pNum, 10) - 1 : selectedParagraphIndex;
 
       if (
@@ -337,13 +354,16 @@ const commands: CommandPattern[] = [
           success: false,
           message: pNum
             ? `Paragraph ${pNum} does not exist.`
-            : "Please select a specific line/paragraph first.",
+            : "Please select text or specify a paragraph number to read.",
           updatedParagraphs: paragraphs,
         };
       }
+
       return {
         success: true,
-        message: `Voice Assistant: Reading ${pNum ? "paragraph " + pNum : "selected line"} aloud...`,
+        message: pNum
+          ? `Reading paragraph ${pNum}`
+          : "Reading selected paragraph",
         updatedParagraphs: paragraphs,
         structuredData: {
           action: "read",
