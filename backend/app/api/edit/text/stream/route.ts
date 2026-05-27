@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { NextResponse } from "next/server";
+import { verifyToken } from "@/lib/auth";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
@@ -12,42 +12,50 @@ export async function POST(req: Request) {
     }
 
     if (!OPENROUTER_API_KEY) {
-      return NextResponse.json({ detail: 'OpenRouter API key not configured on server' }, { status: 500 });
+      return NextResponse.json(
+        { detail: "OpenRouter API key not configured on server" },
+        { status: 500 },
+      );
     }
 
     const body = await req.json();
     body.stream = true; // Force streaming
-    
-    const openRouterRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://ai-voice-editor.app', 
-        'X-Title': 'AI Voice Editor',
+
+    const openRouterRes = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://ai-voice-editor.app",
+          "X-Title": "AI Voice Editor",
+        },
+        body: JSON.stringify(body),
       },
-      body: JSON.stringify(body)
-    });
+    );
 
     if (!openRouterRes.ok) {
       const errorText = await openRouterRes.text();
       return NextResponse.json(
         { detail: `OpenAI API error: ${errorText}` },
-        { status: openRouterRes.status === 401 ? 502 : openRouterRes.status }
+        { status: openRouterRes.status === 401 ? 502 : openRouterRes.status },
       );
     }
 
     // Return the stream directly
     return new Response(openRouterRes.body, {
       headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
       },
     });
-
   } catch (error: any) {
-    console.error('Text Stream Proxy Error:', error);
-    return NextResponse.json({ detail: 'Internal Server Error' }, { status: 500 });
+    console.error("Text Stream Proxy Error:", error);
+    return NextResponse.json(
+      { detail: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
