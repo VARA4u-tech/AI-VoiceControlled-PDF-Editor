@@ -178,7 +178,7 @@ export default function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose-base prose-invert prose-p:my-2 prose-headings:mb-3 prose-headings:mt-6 prose-a:text-accent focus:outline-none max-w-none min-h-[400px] p-6 text-foreground/90 font-body",
+          "prose prose-sm sm:prose-base prose-invert prose-p:my-2 prose-headings:mb-3 prose-headings:mt-6 prose-a:text-accent focus:outline-none max-w-none min-h-[400px] p-6 text-foreground/90 font-body select-text touch-pan-y",
       },
     },
   });

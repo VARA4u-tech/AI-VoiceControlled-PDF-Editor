@@ -453,3 +453,14 @@
     box-shadow: 0 0 0px transparent;
   }
 }
+
+/* Mobile text selection fixes for Tiptap */
+.ProseMirror {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+.ProseMirror * {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
