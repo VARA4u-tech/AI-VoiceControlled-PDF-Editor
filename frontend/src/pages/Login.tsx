@@ -60,7 +60,11 @@ const Login = () => {
 
   if (user) {
     return (
-      <Layout title="Secure Login" subtitle="Authentication Portal" icon={ShieldCheck}>
+      <Layout
+        title="Secure Login"
+        subtitle="Authentication Portal"
+        icon={ShieldCheck}
+      >
         <div className="mx-auto max-w-md space-y-6 text-center">
           <div className="rounded-sm border border-accent/20 bg-accent/5 p-8">
             <h3 className="font-tech mb-2 text-xs uppercase tracking-widest text-accent">
@@ -90,7 +94,11 @@ const Login = () => {
   }
 
   return (
-    <Layout title="Secure Login" subtitle="Authentication Portal" icon={ShieldCheck}>
+    <Layout
+      title="Secure Login"
+      subtitle="Authentication Portal"
+      icon={ShieldCheck}
+    >
       <div className="mx-auto max-w-md space-y-8">
         <div className="space-y-2 text-center">
           <p className="font-body text-sm italic text-foreground/60">

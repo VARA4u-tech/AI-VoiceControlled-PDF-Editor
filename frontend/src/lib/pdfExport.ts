@@ -37,7 +37,8 @@ export async function exportToPdf(
   header.style.borderBottom = "3px solid rgb(180, 140, 60)";
 
   const title = document.createElement("h1");
-  title.innerText = fileName || "Voice Controlled PDF Editor — Exported Document";
+  title.innerText =
+    fileName || "Voice Controlled PDF Editor — Exported Document";
   title.style.margin = "0";
   title.style.fontSize = "22px";
   title.style.color = "rgb(180, 140, 60)"; // gold

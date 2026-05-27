@@ -140,7 +140,9 @@ const Index = () => {
             setFileName(data.file_hash);
             setParagraphs(data.content);
             setPageCount(data.page_count);
-            setCommandFeedback("Session Restored: Cloud synchronization complete.");
+            setCommandFeedback(
+              "Session Restored: Cloud synchronization complete.",
+            );
             playSuccess();
           }
         });
@@ -181,7 +183,11 @@ const Index = () => {
         )
         .then(({ error }) => {
           if (error)
-            console.error("Backup Upsert Failed:", error.message, error.details);
+            console.error(
+              "Backup Upsert Failed:",
+              error.message,
+              error.details,
+            );
         });
     }
   }, [fileName, paragraphs, pageCount, user]);

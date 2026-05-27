@@ -43,7 +43,7 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
 
       {/* Primary Titles */}
       <div className="relative mb-12 space-y-4 px-6 text-center">
-        <h1 className="gold-text-glow font-heading text-base uppercase leading-tight tracking-wider text-primary sm:text-3xl sm:tracking-widest md:text-5xl lg:text-6xl px-4 sm:px-0">
+        <h1 className="gold-text-glow px-4 font-heading text-base uppercase leading-tight tracking-wider text-primary sm:px-0 sm:text-3xl sm:tracking-widest md:text-5xl lg:text-6xl">
           Voice Controlled PDF Editor
         </h1>
         <div className="flex items-center justify-center gap-6">
@@ -79,7 +79,8 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             Voice Intelligence
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            Edit documents naturally with our fast and accurate voice recognition technology.
+            Edit documents naturally with our fast and accurate voice
+            recognition technology.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
             High Performance // ACTIVE
@@ -98,7 +99,8 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             Secure & Private
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            We prioritize your privacy. All document processing happens securely on your device.
+            We prioritize your privacy. All document processing happens securely
+            on your device.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
             Status: Protected // ENCRYPTED
@@ -117,7 +119,8 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
             Smart Editing
           </h3>
           <p className="font-body text-base font-medium leading-relaxed text-foreground">
-            Our AI understands your commands, making complex document edits as simple as speaking.
+            Our AI understands your commands, making complex document edits as
+            simple as speaking.
           </p>
           <div className="mt-4 font-mono text-[10px] uppercase tracking-tighter text-accent/80">
             AI Engine // v4.2
@@ -131,9 +134,7 @@ const CyberHero = ({ fileName, paragraphsCount }: CyberHeroProps) => {
           <span className="font-mono text-[10px] uppercase tracking-widest text-primary/40">
             Reliability
           </span>
-          <span className="font-mono text-sm font-bold text-accent">
-            99.9%
-          </span>
+          <span className="font-mono text-sm font-bold text-accent">99.9%</span>
         </div>
         <div className="h-10 w-[1px] bg-primary/20" />
         <div className="flex flex-col items-center">

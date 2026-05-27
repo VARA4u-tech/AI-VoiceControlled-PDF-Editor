@@ -99,7 +99,11 @@ const Signup = () => {
   };
 
   return (
-    <Layout title="Create Account" subtitle="Authentication Portal" icon={ShieldCheck}>
+    <Layout
+      title="Create Account"
+      subtitle="Authentication Portal"
+      icon={ShieldCheck}
+    >
       <div className="mx-auto max-w-md space-y-8">
         <div className="space-y-2 text-center">
           <p className="font-body text-sm italic text-foreground/60">

@@ -10,11 +10,7 @@ import {
 
 const Terms = () => {
   return (
-    <Layout
-      title="Terms of Service"
-      subtitle="Standard Terms"
-      icon={Scale}
-    >
+    <Layout title="Terms of Service" subtitle="Standard Terms" icon={Scale}>
       <div className="mx-auto max-w-4xl animate-fade-in space-y-12 px-2">
         {/* Intro */}
         <section className="space-y-4 text-center">
@@ -32,8 +28,7 @@ const Terms = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <section className="space-y-6">
             <h4 className="font-tech mb-4 flex items-center gap-3 border-b border-primary/10 pb-2 text-xs font-bold uppercase tracking-widest text-primary">
-              <CheckCircle2 className="h-4 w-4 text-accent" />{" "}
-              Permitted Uses
+              <CheckCircle2 className="h-4 w-4 text-accent" /> Permitted Uses
             </h4>
             <div className="space-y-6 font-mono text-[11px] text-primary/70">
               <div className="border-l-2 border-accent/20 bg-accent/5 p-3">
@@ -53,7 +48,8 @@ const Terms = () => {
 
           <section className="space-y-6">
             <h4 className="font-tech mb-4 flex items-center gap-3 border-b border-primary/10 pb-2 text-xs font-bold uppercase tracking-widest text-primary">
-              <AlertOctagon className="h-4 w-4 text-accent" /> Restricted Activities
+              <AlertOctagon className="h-4 w-4 text-accent" /> Restricted
+              Activities
             </h4>
             <div className="space-y-6 font-mono text-[11px] text-primary/70">
               <div className="border-l-2 border-primary/20 bg-primary/5 p-3">
@@ -84,9 +80,9 @@ const Terms = () => {
               Global Synchronization
             </h4>
             <p className="mx-auto max-w-2xl font-body text-[11px] italic leading-relaxed text-foreground/50">
-              Scribe operates under global academic integrity standards. Any misuse
-              for harmful fraud will result in immediate account suspension.
-              Always prioritize original scholarship.
+              Scribe operates under global academic integrity standards. Any
+              misuse for harmful fraud will result in immediate account
+              suspension. Always prioritize original scholarship.
             </p>
           </div>
         </section>

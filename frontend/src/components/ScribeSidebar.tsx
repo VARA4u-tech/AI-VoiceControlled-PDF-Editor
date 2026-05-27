@@ -117,9 +117,7 @@ const ScribeSidebar = ({
                 Assistant Panel
               </h2>
               <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-accent/60">
-                {user
-                  ? `// User: ${user.email}`
-                  : "// Status: Active"}
+                {user ? `// User: ${user.email}` : "// Status: Active"}
               </p>
             </div>
             <div className="flex items-center gap-2">

@@ -22,9 +22,9 @@ const Privacy = () => {
             Privacy Policy
           </h3>
           <p className="font-body text-base italic leading-relaxed text-foreground/80">
-            Student and professional work is highly confidential. Scribe is built
-            on the principles of secure local processing and private user sessions.
-            Your intellectual property stays yours.
+            Student and professional work is highly confidential. Scribe is
+            built on the principles of secure local processing and private user
+            sessions. Your intellectual property stays yours.
           </p>
         </section>
 
@@ -97,7 +97,8 @@ const Privacy = () => {
 
           <div className="border-l-2 border-primary/30 bg-primary/5 p-6">
             <h4 className="font-tech mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-primary">
-              <AlertTriangle className="h-4 w-4" /> Academic Integrity & Guidelines
+              <AlertTriangle className="h-4 w-4" /> Academic Integrity &
+              Guidelines
             </h4>
             <p className="font-body text-sm italic leading-relaxed text-foreground/70">
               We respect institutional academic integrity policies. Scribe is an

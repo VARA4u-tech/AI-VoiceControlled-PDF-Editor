@@ -187,7 +187,9 @@ const SessionHistory = () => {
                 onClick={handleClearAll}
                 className="font-tech flex shrink-0 items-center justify-center gap-2 rounded-sm border border-red-500/20 bg-red-500/10 px-4 py-2 text-[10px] uppercase tracking-widest text-red-500 transition-all hover:bg-red-500/20"
                 title={
-                  view === "documents" ? "Delete All Documents" : "Delete All Logs"
+                  view === "documents"
+                    ? "Delete All Documents"
+                    : "Delete All Logs"
                 }
               >
                 <Trash2 className="h-3 w-3" /> Delete All

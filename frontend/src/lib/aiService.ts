@@ -18,13 +18,13 @@ import {
 // ── Fallback chain: tried in order until one succeeds ────────────────────────
 // If a model is rate-limited (429/502), the next one is automatically tried.
 const FREE_MODEL_CHAIN = [
-  "meta-llama/llama-4-scout:free",          // Fast, reliable — primary
-  "meta-llama/llama-3.1-8b-instruct:free",  // Lightweight fallback
-  "mistralai/mistral-7b-instruct:free",     // Very stable free model
-  "google/gemma-3-12b-it:free",             // Google fallback
+  "meta-llama/llama-4-scout:free", // Fast, reliable — primary
+  "meta-llama/llama-3.1-8b-instruct:free", // Lightweight fallback
+  "mistralai/mistral-7b-instruct:free", // Very stable free model
+  "google/gemma-3-12b-it:free", // Google fallback
   "deepseek/deepseek-r1-distill-llama-70b:free", // High quality fallback
-  "qwen/qwen3-8b:free",                     // Alibaba fallback
-  "nvidia/nemotron-3-nano-30b-a3b:free",             // Original (now last resort)
+  "qwen/qwen3-8b:free", // Alibaba fallback
+  "nvidia/nemotron-3-nano-30b-a3b:free", // Original (now last resort)
 ];
 
 // ── Shared fetch helper with model fallback ───────────────────────────────────
@@ -49,7 +49,10 @@ async function fetchWithFallback(
     // If rate-limited or model-not-found, move to the next model
     if (response.status === 429 || response.status === 404) {
       const raw = await response.text().catch(() => "");
-      console.warn(`Model "${model}" unavailable (HTTP ${response.status}). Trying next model...`, raw);
+      console.warn(
+        `Model "${model}" unavailable (HTTP ${response.status}). Trying next model...`,
+        raw,
+      );
       lastErr = new Error(`HTTP ${response.status}: ${raw}`);
       continue;
     }
@@ -57,24 +60,32 @@ async function fetchWithFallback(
     // For 502/503 from backend (upstream model error), check if it's a model issue
     if (response.status === 502 || response.status === 503) {
       const raw = await response.text().catch(() => "");
-      const isModelError = raw.includes("No endpoints found") ||
+      const isModelError =
+        raw.includes("No endpoints found") ||
         raw.includes("rate-limited") ||
         raw.includes("429");
       if (isModelError) {
-        console.warn(`Model "${model}" returned upstream error (HTTP ${response.status}). Trying next model...`, raw);
+        console.warn(
+          `Model "${model}" returned upstream error (HTTP ${response.status}). Trying next model...`,
+          raw,
+        );
         lastErr = new Error(`HTTP ${response.status}: ${raw}`);
         continue;
       }
       // Non-model 502 — surface immediately
       console.error(`Backend error (HTTP ${response.status}):`, raw);
-      throw new Error(`API Connection failed (HTTP ${response.status}): ${raw}`);
+      throw new Error(
+        `API Connection failed (HTTP ${response.status}): ${raw}`,
+      );
     }
 
     // All other non-OK responses (401, 500, etc.) — surface immediately
     if (!response.ok) {
       const raw = await response.text().catch(() => "(unreadable)");
       console.error(`API failed: HTTP ${response.status}`, raw);
-      throw new Error(`API Connection failed (HTTP ${response.status}): ${raw}`);
+      throw new Error(
+        `API Connection failed (HTTP ${response.status}): ${raw}`,
+      );
     }
 
     console.info(`Scribe Oracle: Connected via model "${model}".`);
@@ -132,22 +143,18 @@ export async function processChatOnly(
   const documentContext = buildSmartDocumentContext(paragraphs, message, 5);
 
   try {
-    const response = await fetchWithFallback(
-      backendUrl,
-      token,
-      (model) => ({
-        model,
-        max_tokens: 512,
-        temperature: 0.7,
-        messages: [
-          { role: "system", content: CHAT_SYSTEM_PROMPT },
-          {
-            role: "user",
-            content: `Document Context (for reference):\n${documentContext}\n\nUser Message: "${message}"`,
-          },
-        ],
-      }),
-    );
+    const response = await fetchWithFallback(backendUrl, token, (model) => ({
+      model,
+      max_tokens: 512,
+      temperature: 0.7,
+      messages: [
+        { role: "system", content: CHAT_SYSTEM_PROMPT },
+        {
+          role: "user",
+          content: `Document Context (for reference):\n${documentContext}\n\nUser Message: "${message}"`,
+        },
+      ],
+    }));
 
     const data = await response.json();
     return (
@@ -206,22 +213,18 @@ export async function processCommandWithAI(
         command,
       );
 
-      const response = await fetchWithFallback(
-        backendUrl,
-        token,
-        (model) => ({
-          model,
-          max_tokens: 1024,
-          temperature: 0.2,
-          messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            {
-              role: "user",
-              content: `Command: "${command}"\n\nDocument:\n${documentContext}`,
-            },
-          ],
-        }),
-      );
+      const response = await fetchWithFallback(backendUrl, token, (model) => ({
+        model,
+        max_tokens: 1024,
+        temperature: 0.2,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          {
+            role: "user",
+            content: `Command: "${command}"\n\nDocument:\n${documentContext}`,
+          },
+        ],
+      }));
 
       const data = await response.json();
       const aiContent = data.choices?.[0]?.message?.content || "{}";
@@ -251,7 +254,8 @@ export async function processCommandWithAI(
         console.error("AI Direct API Error:", error);
         return {
           success: false,
-          message: "All AI providers are currently busy. Please try again in a moment.",
+          message:
+            "All AI providers are currently busy. Please try again in a moment.",
           updatedParagraphs: paragraphs,
         };
       }

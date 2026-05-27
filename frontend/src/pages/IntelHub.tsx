@@ -38,15 +38,11 @@ const IntelHub = () => {
             <ul className="space-y-4 font-mono text-[11px] text-primary/70">
               <li className="flex gap-3">
                 <span className="font-bold text-accent">01.</span>
-                <span>
-                  Upload your document drafts (PDF/TXT).
-                </span>
+                <span>Upload your document drafts (PDF/TXT).</span>
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-accent">02.</span>
-                <span>
-                  Activate the Mic to dictate structure or content.
-                </span>
+                <span>Activate the Mic to dictate structure or content.</span>
               </li>
               <li className="flex gap-3">
                 <span className="font-bold text-accent">03.</span>

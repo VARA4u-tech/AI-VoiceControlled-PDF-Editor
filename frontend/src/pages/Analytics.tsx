@@ -214,7 +214,10 @@ const Analytics = () => {
             </h3>
             <div className="flex flex-wrap justify-around gap-4 rounded-sm border border-primary/10 bg-primary/5 p-4">
               {[
-                { label: "Account Link", value: user ? "Connected" : "Disconnected" },
+                {
+                  label: "Account Link",
+                  value: user ? "Connected" : "Disconnected",
+                },
                 { label: "Cloud Sync", value: "Active" },
                 { label: "AI Service", value: "Online" },
               ].map(({ label, value }) => (

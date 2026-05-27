@@ -42,7 +42,8 @@ const Footer = () => {
               </div>
             </Link>
             <p className="mt-2 font-body text-xs font-medium leading-relaxed text-foreground/80">
-              Advanced voice recognition and AI document editing platform designed to make document editing fast and hands-free.
+              Advanced voice recognition and AI document editing platform
+              designed to make document editing fast and hands-free.
             </p>
             <div className="mt-2 flex gap-4">
               <a
@@ -150,7 +151,8 @@ const Footer = () => {
               <ExternalLink className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-[-0.5px]" />
             </button>
             <p className="font-body text-[10px] italic leading-relaxed text-foreground/60">
-              * Dedicated support available for enterprise integration and usage queries.
+              * Dedicated support available for enterprise integration and usage
+              queries.
             </p>
           </div>
         </div>
