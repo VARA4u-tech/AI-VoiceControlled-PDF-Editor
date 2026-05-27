@@ -240,7 +240,7 @@ const useSpeechRecognition = (): UseSpeechRecognitionResult => {
       console.error("Failed to stop recognition:", e);
       setIsListening(false);
     }
-  }, []);
+  }, [clearSilenceTimeout]);
 
   const resetTranscript = useCallback(() => {
     setTranscript("");

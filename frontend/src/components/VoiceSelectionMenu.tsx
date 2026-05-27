@@ -149,7 +149,9 @@ export default function VoiceSelectionMenu({ editor }: { editor: Editor }) {
     clearSilenceTimeout();
     try {
       recognitionRef.current?.stop();
-    } catch (err) {}
+    } catch (err) {
+      // ignore
+    }
     setIsRecording(false);
 
     const finalTranscript = transcriptRef.current.trim();
@@ -218,7 +220,9 @@ export default function VoiceSelectionMenu({ editor }: { editor: Editor }) {
     // Abort any stale background sessions first
     try {
       recognitionRef.current.abort();
-    } catch (err) {}
+    } catch (err) {
+      // ignore
+    }
 
     // Small delay ensures the browser completely clears the audio pipeline
     setTimeout(() => {
