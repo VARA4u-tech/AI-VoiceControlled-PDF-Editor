@@ -1,9 +1,22 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
 import pdfParse from "pdf-parse";
+import rateLimit from "@/lib/rateLimit";
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+    try {
+      await limiter.check(10, ip); // 10 document extractions per minute
+    } catch {
+      return NextResponse.json({ detail: "Rate limit exceeded" }, { status: 429 });
+    }
+
     // 1. Authenticate
     try {
       await verifyToken(req);

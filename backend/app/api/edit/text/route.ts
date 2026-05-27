@@ -1,10 +1,23 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
+import rateLimit from "@/lib/rateLimit";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
+
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+    try {
+      await limiter.check(20, ip); // 20 requests per minute
+    } catch {
+      return NextResponse.json({ detail: "Rate limit exceeded" }, { status: 429 });
+    }
+
     // 1. Authenticate
     try {
       await verifyToken(req);
