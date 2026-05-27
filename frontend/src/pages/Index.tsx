@@ -854,7 +854,7 @@ const Index = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-4-31b-it:free",
+          model: "google/gemma-4-26b-a4b-it:free",
           max_tokens: 30, // a title is max 5 words — very small cap
           temperature: 0.3,
           messages: [

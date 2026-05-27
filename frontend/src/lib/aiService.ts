@@ -24,7 +24,7 @@ const FREE_MODEL_CHAIN = [
   "google/gemma-3-12b-it:free",             // Google fallback
   "deepseek/deepseek-r1-distill-llama-70b:free", // High quality fallback
   "qwen/qwen3-8b:free",                     // Alibaba fallback
-  "google/gemma-4-31b-it:free",             // Original (now last resort)
+  "google/gemma-4-26b-a4b-it:free",             // Original (now last resort)
 ];
 
 // ── Shared fetch helper with model fallback ───────────────────────────────────
