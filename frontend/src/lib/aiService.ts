@@ -18,13 +18,7 @@ import {
 // ── Fallback chain: tried in order until one succeeds ────────────────────────
 // If a model is rate-limited (429/502), the next one is automatically tried.
 const FREE_MODEL_CHAIN = [
-  "meta-llama/llama-4-scout:free", // Fast, reliable — primary
-  "meta-llama/llama-3.1-8b-instruct:free", // Lightweight fallback
-  "mistralai/mistral-7b-instruct:free", // Very stable free model
-  "google/gemma-3-12b-it:free", // Google fallback
-  "deepseek/deepseek-r1-distill-llama-70b:free", // High quality fallback
-  "qwen/qwen3-8b:free", // Alibaba fallback
-  "nvidia/nemotron-3-nano-30b-a3b:free", // Original (now last resort)
+  "nvidia/nemotron-3-nano-30b-a3b:free",
 ];
 
 // ── Shared fetch helper with model fallback ───────────────────────────────────
