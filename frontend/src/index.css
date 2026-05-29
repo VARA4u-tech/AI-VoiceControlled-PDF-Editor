@@ -22,16 +22,7 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* ── Mobile / Tablet touch scroll fix ─────────────────────────────────
-   Allow Lenis to intercept vertical touch swipes on all touch devices.
-   Without this the browser may consume the touchmove events first. */
-html,
-body {
-  touch-action: pan-y;          /* pass vertical swipes to JS (Lenis) */
-  overscroll-behavior-y: none;  /* disable browser pull-to-refresh bounce */
-}
-/* ──────────────────────────────────────────────────────────────────── */
-
+/* Mobile scrolling is handled natively for best performance */
 
 @tailwind base;
 @tailwind components;

@@ -13,11 +13,12 @@ export default function SmoothScroll() {
   useLenis({
     duration: 1.2,
     smoothWheel: true,
-    // ── Touch / Mobile / Tablet ───────────────────────────────────────
-    smoothTouch: true,      // Lenis v1 — intercept touch events
-    syncTouch: true,        // Lenis v2 — sync touch inertia to easing
-    syncTouchLerp: 0.075,   // Slower lerp = longer, silkier deceleration
-    touchMultiplier: 2,     // Amplify touch delta for responsiveness
+    // ── Pro Mobile Optimization ───────────────────────────────────────
+    // We completely disable smoothTouch. 
+    // Native mobile scrolling is hardware accelerated and naturally smooth.
+    // Hijacking it causes jitter, lag, and the "overscroll" effect.
+    smoothTouch: false,
+    syncTouch: false,
     // ─────────────────────────────────────────────────────────────────
   });
 
