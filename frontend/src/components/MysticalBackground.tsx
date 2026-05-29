@@ -2,7 +2,7 @@ import React from "react";
 
 const MysticalBackground = () => {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden hidden md:block">
       {/* Ambient glowing deep-sea/emerald orbs */}
       <div className="absolute left-[-10%] top-[-10%] h-[60vw] w-[60vw] animate-[pulse_8s_ease-in-out_infinite_alternate] rounded-full bg-accent/5 mix-blend-screen blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] h-[50vw] w-[50vw] animate-[pulse_12s_ease-in-out_infinite_alternate-reverse] rounded-full bg-primary/5 mix-blend-screen blur-[140px]" />
