@@ -56,7 +56,11 @@ interface WindowWithSpeechRecognition extends Window {
   webkitSpeechRecognition?: SpeechRecognitionConstructor;
 }
 
-const useSpeechRecognition = (): UseSpeechRecognitionResult => {
+interface UseSpeechRecognitionOptions {
+  lang?: string;
+}
+
+const useSpeechRecognition = ({ lang = "en-US" }: UseSpeechRecognitionOptions = {}): UseSpeechRecognitionResult => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [interimTranscript, setInterimTranscript] = useState("");
@@ -121,17 +125,7 @@ const useSpeechRecognition = (): UseSpeechRecognitionResult => {
     recognition.continuous = true;
     recognition.interimResults = true;
 
-    // Load preferred language from saved settings
-    let preferredLang = "en-US";
-    try {
-      const savedSettings = localStorage.getItem("scribe_settings");
-      if (savedSettings) {
-        preferredLang = JSON.parse(savedSettings).language || "en-US";
-      }
-    } catch (e) {
-      console.error("Failed to load language settings", e);
-    }
-    recognition.lang = preferredLang;
+    recognition.lang = lang;
 
     recognition.onresult = (event: SpeechRecognitionResultEvent) => {
       let final = "";
@@ -200,7 +194,7 @@ const useSpeechRecognition = (): UseSpeechRecognitionResult => {
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       recognition.abort();
     };
-  }, [isSupported, resetSilenceTimeout]);
+  }, [isSupported, resetSilenceTimeout, lang]);
 
   const startListening = useCallback(() => {
     if (!recognitionRef.current) return;

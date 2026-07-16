@@ -10,6 +10,7 @@ import CyberHero from "@/components/CyberHero";
 import ChatWidget from "@/components/ChatWidget";
 import ScribeSidebar from "@/components/ScribeSidebar";
 import MysticalBackground from "@/components/MysticalBackground";
+import LanguageSelector from "@/components/LanguageSelector";
 import useSpeechRecognition from "@/hooks/useSpeechRecognition";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import { useAuth } from "@/hooks/useAuth";
@@ -61,6 +62,27 @@ function loadSession() {
 
 const Index = () => {
   const { user } = useAuth();
+
+  const [selectedLanguage, setSelectedLanguage] = useState(() => {
+    try {
+      const savedSettings = localStorage.getItem("scribe_settings");
+      return savedSettings ? JSON.parse(savedSettings).language || "en-US" : "en-US";
+    } catch {
+      return "en-US";
+    }
+  });
+
+  const handleLanguageChange = useCallback((lang: string) => {
+    setSelectedLanguage(lang);
+    try {
+      const savedSettings = localStorage.getItem("scribe_settings");
+      const current = savedSettings ? JSON.parse(savedSettings) : {};
+      localStorage.setItem("scribe_settings", JSON.stringify({ ...current, language: lang }));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   const saved = loadSession();
   const [fileName, setFileName] = useState(saved?.fileName ?? "");
   const [paragraphs, setParagraphs] = useState<string[]>(
@@ -462,7 +484,7 @@ const Index = () => {
     isSupported,
     startListening,
     stopListening,
-  } = useSpeechRecognition();
+  } = useSpeechRecognition({ lang: selectedLanguage });
 
   // Keep a ref of the latest transcript to avoid stale closures in handleMicToggle
   useEffect(() => {
@@ -1240,6 +1262,7 @@ const Index = () => {
 
         {/* Mic + Waveform */}
         <div className="my-6 flex flex-col items-center gap-3">
+          <LanguageSelector selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange} />
           <MicButton isListening={isListening} onClick={handleMicToggle} />
           <GoldWaveform isActive={isListening} />
           <StatusIndicator
