@@ -1044,7 +1044,7 @@ const Index = () => {
 
         <Activity className="h-4 w-4 transition-all group-hover:scale-110 group-hover:text-accent" />
         <span className="font-tech mt-0.5 hidden text-xs font-bold uppercase tracking-[0.2em] transition-colors group-hover:text-accent sm:block">
-          System Log
+          Activity Log
         </span>
 
         {scribeLog.length > 0 && (

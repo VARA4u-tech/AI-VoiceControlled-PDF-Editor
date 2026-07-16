@@ -187,7 +187,7 @@ const Footer = () => {
               to="/logs"
               className="font-tech text-[9px] uppercase tracking-widest text-primary/60 transition-colors hover:text-primary"
             >
-              System Logs
+              Activity Logs
             </Link>
           </div>
         </div>

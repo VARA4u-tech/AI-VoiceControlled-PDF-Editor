@@ -13,7 +13,7 @@ import {
 
 const RootLog = () => {
   return (
-    <Layout title="System Logs" subtitle="Diagnostic Audit" icon={Terminal}>
+    <Layout title="Activity Logs" subtitle="Diagnostic Audit" icon={Terminal}>
       <div className="mx-auto max-w-5xl animate-fade-in space-y-12 px-2">
         {/* Intro */}
         <section className="space-y-4 text-center">
