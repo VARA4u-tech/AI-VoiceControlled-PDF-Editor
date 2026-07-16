@@ -53,3 +53,6 @@ bun.lockb
 
 # Local tests
 tmp_test_api.js
+
+# Next.js build
+backend/.next/

@@ -20,7 +20,7 @@ import { TableHeader } from "@tiptap/extension-table-header";
 import { TableCell } from "@tiptap/extension-table-cell";
 import { TextAlign } from "@tiptap/extension-text-align";
 import VoiceSelectionMenu from "./VoiceSelectionMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Sparkles } from "lucide-react";
 
 interface RichTextEditorProps {
@@ -185,21 +185,20 @@ export default function RichTextEditor({
 
   // Sync external content changes into the editor if it changes from outside
   // (e.g. AI updates or loading a new document)
-  if (editor && content !== editor.getHTML()) {
-    // Only update if the content actually differs from what the editor has
-    // to prevent cursor jumping while typing.
-    const currentEditorContent = editor.getHTML();
-    if (
-      content !== currentEditorContent &&
-      content !== "<p></p>" &&
-      currentEditorContent !== "<p></p>"
-    ) {
-      // Small timeout prevents state update during render
-      setTimeout(() => {
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      // Only update if the content actually differs from what the editor has
+      // to prevent cursor jumping while typing.
+      const currentEditorContent = editor.getHTML();
+      if (
+        content !== currentEditorContent &&
+        content !== "<p></p>" &&
+        currentEditorContent !== "<p></p>"
+      ) {
         editor.commands.setContent(content, { emitUpdate: false });
-      }, 0);
+      }
     }
-  }
+  }, [content, editor]);
 
   return (
     <div className="relative w-full max-w-4xl overflow-hidden rounded-lg border border-primary/30 bg-background/90 shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-500">
