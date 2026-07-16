@@ -47,14 +47,22 @@ const ScribeSidebar = ({
   const focusIntensity =
     wordCount > 0 ? Math.min(100, (wordCount / 500) * 100) : 0;
 
-  // Close on Escape key
+  // Close on Escape key and lock body scroll
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+
+    if (isOpen) {
+      window.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, onClose]);
 
   return (
     <>
@@ -70,9 +78,10 @@ const ScribeSidebar = ({
 
       {/* Modern High-Tech Panel */}
       <div
-        className={`cubic-bezier(0.4, 0, 0.2, 1) fixed right-0 top-0 z-[60] flex h-full w-full transform overflow-hidden border-l border-primary/20 bg-slate-950/90 shadow-[-40px_0_80px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-transform duration-700 sm:w-[420px] ${
+        className={`fixed right-0 top-0 z-[60] flex h-full w-full transform overflow-hidden border-l border-primary/20 bg-slate-950/90 shadow-[-40px_0_80px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-transform duration-700 ease-out sm:w-[420px] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        data-lenis-prevent="true"
       >
         {/* Decorative Left Edge Bar */}
         <div className="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-transparent via-accent/40 to-transparent opacity-50" />
@@ -140,7 +149,10 @@ const ScribeSidebar = ({
           </div>
 
           {/* Scrolling Content */}
-          <div className="custom-scrollbar flex-1 space-y-8 overflow-y-auto px-8 py-6">
+          <div
+            className="custom-scrollbar flex-1 min-h-0 space-y-8 overflow-y-auto overscroll-contain px-8 py-6"
+            data-lenis-prevent="true"
+          >
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="group relative overflow-hidden rounded-lg border border-primary/10 bg-primary/5 p-4">
