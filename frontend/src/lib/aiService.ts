@@ -17,9 +17,7 @@ import {
  */
 // ── Fallback chain: tried in order until one succeeds ────────────────────────
 // If a model is rate-limited (429/502), the next one is automatically tried.
-const FREE_MODEL_CHAIN = [
-  "nvidia/nemotron-3-nano-30b-a3b:free",
-];
+const FREE_MODEL_CHAIN = ["nvidia/nemotron-3-nano-30b-a3b:free"];
 
 // ── Shared fetch helper with model fallback ───────────────────────────────────
 async function fetchWithFallback(

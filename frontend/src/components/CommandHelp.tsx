@@ -48,7 +48,7 @@ const CommandHelp = () => {
 
             {/* Command list */}
             <div
-              className="custom-scrollbar min-h-0 max-h-[45vh] overflow-y-auto overscroll-contain sm:max-h-[60vh]"
+              className="custom-scrollbar max-h-[45vh] min-h-0 overflow-y-auto overscroll-contain sm:max-h-[60vh]"
               data-lenis-prevent="true"
             >
               <ul className="space-y-4 p-4">

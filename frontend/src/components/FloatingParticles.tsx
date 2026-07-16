@@ -31,7 +31,7 @@ const FloatingParticles = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden hidden md:block">
+    <div className="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden md:block">
       {particles.map((p) => (
         <div
           key={p.id}
