@@ -151,7 +151,7 @@ export async function detectLanguage(text: string): Promise<string> {
 export async function processChatOnly(
   message: string,
   paragraphs: string[],
-  onChunk?: (chunk: string) => void
+  onChunk?: (chunk: string) => void,
 ): Promise<string> {
   const backendUrl =
     import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
@@ -185,7 +185,8 @@ export async function processChatOnly(
       );
     }
 
-    if (!response.body) throw new Error("No response body available for streaming.");
+    if (!response.body)
+      throw new Error("No response body available for streaming.");
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");
@@ -195,13 +196,13 @@ export async function processChatOnly(
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-      
+
       buffer += decoder.decode(value, { stream: true });
       let newlineIndex;
       while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
         const line = buffer.slice(0, newlineIndex).trim();
         buffer = buffer.slice(newlineIndex + 1);
-        
+
         if (line.startsWith("data: ") && line !== "data: [DONE]") {
           try {
             const data = JSON.parse(line.slice(6));

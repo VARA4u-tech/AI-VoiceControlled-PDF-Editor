@@ -11,7 +11,10 @@ interface Message {
 
 interface ChatWidgetProps {
   paragraphs: string[];
-  onChat: (message: string, onChunk?: (chunk: string) => void) => Promise<string>;
+  onChat: (
+    message: string,
+    onChunk?: (chunk: string) => void,
+  ) => Promise<string>;
 }
 
 const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
@@ -68,8 +71,8 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
       await onChat(userMsg.text, (chunk) => {
         setMessages((prev) =>
           prev.map((m) =>
-            m.id === botMsgId ? { ...m, text: m.text + chunk } : m
-          )
+            m.id === botMsgId ? { ...m, text: m.text + chunk } : m,
+          ),
         );
       });
     } catch (err) {

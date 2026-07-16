@@ -68,7 +68,9 @@ const Index = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(() => {
     try {
       const savedSettings = localStorage.getItem("scribe_settings");
-      return savedSettings ? JSON.parse(savedSettings).language || "en-US" : "en-US";
+      return savedSettings
+        ? JSON.parse(savedSettings).language || "en-US"
+        : "en-US";
     } catch {
       return "en-US";
     }
@@ -79,7 +81,10 @@ const Index = () => {
     try {
       const savedSettings = localStorage.getItem("scribe_settings");
       const current = savedSettings ? JSON.parse(savedSettings) : {};
-      localStorage.setItem("scribe_settings", JSON.stringify({ ...current, language: lang }));
+      localStorage.setItem(
+        "scribe_settings",
+        JSON.stringify({ ...current, language: lang }),
+      );
     } catch (e) {
       console.error(e);
     }
@@ -1301,7 +1306,10 @@ const Index = () => {
 
         {/* Mic + Waveform */}
         <div className="my-6 flex flex-col items-center gap-3">
-          <LanguageSelector selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange} />
+          <LanguageSelector
+            selectedLanguage={selectedLanguage}
+            onLanguageChange={handleLanguageChange}
+          />
           <MicButton isListening={isListening} onClick={handleMicToggle} />
           <GoldWaveform isActive={isListening} />
           <StatusIndicator

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useRegisterSW } from 'virtual:pwa-register/react';
-import { toast } from 'sonner';
+import React, { useEffect } from "react";
+import { useRegisterSW } from "virtual:pwa-register/react";
+import { toast } from "sonner";
 
 export function ReloadPrompt() {
   const {
@@ -9,10 +9,10 @@ export function ReloadPrompt() {
     updateServiceWorker,
   } = useRegisterSW({
     onRegistered(r) {
-      console.log('SW Registered:', r);
+      console.log("SW Registered:", r);
     },
     onRegisterError(error) {
-      console.log('SW registration error', error);
+      console.log("SW registration error", error);
     },
   });
 
@@ -23,16 +23,16 @@ export function ReloadPrompt() {
 
   useEffect(() => {
     if (offlineReady) {
-      toast.success('App ready to work offline');
+      toast.success("App ready to work offline");
     }
   }, [offlineReady]);
 
   useEffect(() => {
     if (needRefresh) {
-      toast('New content available', {
-        description: 'Please reload to update to the latest version.',
+      toast("New content available", {
+        description: "Please reload to update to the latest version.",
         action: {
-          label: 'Reload',
+          label: "Reload",
           onClick: () => updateServiceWorker(true),
         },
         onDismiss: () => close(),

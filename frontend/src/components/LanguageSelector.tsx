@@ -29,7 +29,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         value={selectedLanguage}
         onChange={(e) => onLanguageChange(e.target.value)}
         className="appearance-none bg-transparent font-mono text-[11px] text-primary outline-none [&>option]:bg-slate-900"
-        style={{ paddingRight: '12px' }}
+        style={{ paddingRight: "12px" }}
       >
         {SUPPORTED_LANGUAGES.map((lang) => (
           <option key={lang.code} value={lang.code}>

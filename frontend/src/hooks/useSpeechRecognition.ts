@@ -60,7 +60,9 @@ interface UseSpeechRecognitionOptions {
   lang?: string;
 }
 
-const useSpeechRecognition = ({ lang = "en-US" }: UseSpeechRecognitionOptions = {}): UseSpeechRecognitionResult => {
+const useSpeechRecognition = ({
+  lang = "en-US",
+}: UseSpeechRecognitionOptions = {}): UseSpeechRecognitionResult => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [interimTranscript, setInterimTranscript] = useState("");
