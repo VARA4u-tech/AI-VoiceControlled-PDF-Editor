@@ -151,6 +151,7 @@ export async function detectLanguage(text: string): Promise<string> {
 export async function processChatOnly(
   message: string,
   paragraphs: string[],
+  onChunk?: (chunk: string) => void
 ): Promise<string> {
   const backendUrl =
     import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
@@ -164,6 +165,7 @@ export async function processChatOnly(
   try {
     const response = await fetchWithFallback(backendUrl, token, (model) => ({
       model,
+      stream: !!onChunk,
       max_tokens: 512,
       temperature: 0.7,
       messages: [
@@ -175,11 +177,46 @@ export async function processChatOnly(
       ],
     }));
 
-    const data = await response.json();
-    return (
-      data.choices?.[0]?.message?.content?.trim() ||
-      "No response received from the AI service."
-    );
+    if (!onChunk) {
+      const data = await response.json();
+      return (
+        data.choices?.[0]?.message?.content?.trim() ||
+        "No response received from the AI service."
+      );
+    }
+
+    if (!response.body) throw new Error("No response body available for streaming.");
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let fullText = "";
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      buffer += decoder.decode(value, { stream: true });
+      let newlineIndex;
+      while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+        const line = buffer.slice(0, newlineIndex).trim();
+        buffer = buffer.slice(newlineIndex + 1);
+        
+        if (line.startsWith("data: ") && line !== "data: [DONE]") {
+          try {
+            const data = JSON.parse(line.slice(6));
+            const delta = data.choices?.[0]?.delta?.content || "";
+            if (delta) {
+              fullText += delta;
+              onChunk(delta);
+            }
+          } catch (e) {
+            // Ignore parse errors from incomplete lines
+          }
+        }
+      }
+    }
+    return fullText.trim() || "No response received from the AI service.";
   } catch (error) {
     console.error("Chat API Error:", error);
     const errMsg = error instanceof Error ? error.message.toLowerCase() : "";

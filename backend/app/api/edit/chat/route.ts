@@ -62,6 +62,17 @@ export async function POST(req: Request) {
       );
     }
 
+    // If streaming was requested, return the raw SSE stream directly
+    if (body.stream) {
+      return new Response(openRouterRes.body, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+        },
+      });
+    }
+
     const data = await openRouterRes.json();
     return NextResponse.json(data);
   } catch (error: any) {

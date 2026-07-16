@@ -437,7 +437,7 @@ const Index = () => {
   }, []);
 
   const handleChat = useCallback(
-    async (message: string) => {
+    async (message: string, onChunk?: (chunk: string) => void) => {
       if (!user) {
         setCommandFeedback(
           "Authentication Required. Please log in to connect.",
@@ -448,7 +448,7 @@ const Index = () => {
         return;
       }
       setIsProcessing(true);
-      const response = await processChatOnly(message, paragraphs);
+      const response = await processChatOnly(message, paragraphs, onChunk);
       setIsProcessing(false);
       return response;
     },

@@ -11,7 +11,7 @@ interface Message {
 
 interface ChatWidgetProps {
   paragraphs: string[];
-  onChat: (message: string) => Promise<string>;
+  onChat: (message: string, onChunk?: (chunk: string) => void) => Promise<string>;
 }
 
 const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
@@ -52,16 +52,26 @@ const ChatWidget = ({ paragraphs, onChat }: ChatWidgetProps) => {
     setIsTyping(true);
 
     try {
-      // Execute simple chat transmission
-      const responseText = await onChat(userMsg.text);
+      // Prepare bot message for streaming
+      const botMsgId = (Date.now() + 1).toString();
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: botMsgId,
+          text: "",
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ]);
 
-      const botMsg: Message = {
-        id: (Date.now() + 1).toString(),
-        text: responseText,
-        sender: "bot",
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, botMsg]);
+      // Execute chat transmission with streaming callback
+      await onChat(userMsg.text, (chunk) => {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === botMsgId ? { ...m, text: m.text + chunk } : m
+          )
+        );
+      });
     } catch (err) {
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
