@@ -24,6 +24,7 @@ import { parseDocument, type ParsedDocument } from "@/lib/documentParser";
 import { processVoiceCommand, type CommandResult } from "@/lib/voiceCommands";
 import { processCommandWithAI, processChatOnly } from "@/lib/aiService";
 import { exportToPdf } from "@/lib/pdfExport";
+import { exportToWord } from "@/lib/wordExport";
 import { useSessionTimer } from "@/hooks/useSessionTimer";
 import {
   Download,
@@ -37,6 +38,7 @@ import {
   History as HistoryIcon,
   LogIn,
   UserPlus,
+  FileText,
 } from "lucide-react";
 import OnboardingTutorial from "@/components/OnboardingTutorial";
 import SmartSuggestions from "@/components/SmartSuggestions";
@@ -788,6 +790,27 @@ const Index = () => {
     }
   };
 
+  const [isExportingWord, setIsExportingWord] = useState(false);
+  const handleWordExport = async () => {
+    if (!paragraphs.length || isExportingWord) return;
+    setIsExportingWord(true);
+    setCommandFeedback("Generating MS Word document... please wait.");
+    try {
+      await exportToWord(fileName, paragraphs);
+      setCommandFeedback("Word document exported successfully.");
+      setCommandSuccess(true);
+      playSuccess();
+      clearFeedback();
+    } catch (err) {
+      console.error("Export error:", err);
+      setCommandFeedback("Export failed. Please try again.");
+      setCommandSuccess(false);
+      playError();
+    } finally {
+      setIsExportingWord(false);
+    }
+  };
+
   // ── Save Version ──────────────────────────────────────────────────────────
   const [isSavingVersion, setIsSavingVersion] = useState(false);
   const [versionLabel, setVersionLabel] = useState("");
@@ -1172,6 +1195,22 @@ const Index = () => {
                     <Download className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
                   )}
                   {isExporting ? "Exporting..." : "Export PDF"}
+                </button>
+
+                <button
+                  onClick={handleWordExport}
+                  onMouseEnter={() => playHover()}
+                  disabled={isExportingWord}
+                  className="font-tech group relative flex w-full animate-fade-in cursor-pointer items-center justify-center gap-2 overflow-hidden border border-primary/20 bg-primary/5 px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-accent hover:bg-accent/5 hover:text-accent disabled:opacity-50 sm:w-auto sm:py-3 sm:text-[11px]"
+                >
+                  <div className="tech-bracket-tl h-1 w-1" />
+                  <div className="tech-bracket-br h-1 w-1" />
+                  {isExportingWord ? (
+                    <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+                  ) : (
+                    <FileText className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
+                  )}
+                  {isExportingWord ? "Exporting..." : "Export Word"}
                 </button>
 
                 <button
