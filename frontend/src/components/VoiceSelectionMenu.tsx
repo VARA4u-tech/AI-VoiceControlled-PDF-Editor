@@ -43,7 +43,15 @@ interface WindowWithSpeech extends Window {
   webkitSpeechRecognition?: { new (): SpeechRecognition };
 }
 
-export default function VoiceSelectionMenu({ editor }: { editor: Editor }) {
+interface VoiceSelectionMenuProps {
+  editor: Editor;
+  onLog?: (command: string, success: boolean) => void;
+}
+
+export default function VoiceSelectionMenu({
+  editor,
+  onLog,
+}: VoiceSelectionMenuProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState("");
@@ -190,11 +198,13 @@ export default function VoiceSelectionMenu({ editor }: { editor: Editor }) {
         editor.commands.insertContent(newHtml);
         toast.success("Edit applied successfully!");
       }
+      onLog?.(finalTranscript, true);
     } catch (error) {
       console.error("Selection Edit Error", error);
       toast.error(
         error instanceof Error ? error.message : "Failed to apply AI edit.",
       );
+      onLog?.(finalTranscript, false);
     } finally {
       setIsProcessing(false);
       setTranscript("");

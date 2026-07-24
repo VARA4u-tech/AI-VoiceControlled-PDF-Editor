@@ -27,6 +27,7 @@ interface RichTextEditorProps {
   content: string;
   onChange: (content: string) => void;
   isLoading?: boolean;
+  onVoiceCommandLog?: (command: string, success: boolean) => void;
 }
 
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
@@ -128,6 +129,7 @@ export default function RichTextEditor({
   content,
   onChange,
   isLoading,
+  onVoiceCommandLog,
 }: RichTextEditorProps) {
   const [showTip, setShowTip] = useState(true);
 
@@ -238,7 +240,7 @@ export default function RichTextEditor({
 
       <MenuBar editor={editor} />
 
-      {editor && <VoiceSelectionMenu editor={editor} />}
+      {editor && <VoiceSelectionMenu editor={editor} onLog={onVoiceCommandLog} />}
 
       <div className="custom-scrollbar max-h-[60vh] overflow-y-auto">
         <EditorContent editor={editor} />

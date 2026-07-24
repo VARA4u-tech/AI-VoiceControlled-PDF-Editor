@@ -484,6 +484,36 @@ const Index = () => {
     [paragraphs, user, clearFeedback, playError],
   );
 
+  const handleSelectionCommandExecuted = useCallback(
+    (command: string, success: boolean, action: string = "selection_edit") => {
+      setScribeLog((prev) => [
+        {
+          title: "Selection Edit",
+          content: `Data: "${command}"`,
+          type: "info",
+          timestamp: new Date(),
+        },
+        ...prev,
+      ]);
+
+      if (user) {
+        supabase
+          .from("scribe_activity")
+          .insert({
+            user_id: user.id,
+            document_name: fileName || "unnamed_ritual",
+            command_type: action,
+            transcript: command,
+            is_success: success,
+          })
+          .then(({ error }) => {
+            if (error) console.error("Activity Log Failed:", error.message);
+          });
+      }
+    },
+    [user, fileName],
+  );
+
   const {
     isListening,
     transcript,
@@ -1433,6 +1463,7 @@ const Index = () => {
               setCommandSuccess(true);
               clearFeedback();
             }}
+            onVoiceCommandLog={handleSelectionCommandExecuted}
           />
 
           {/* Smart Suggestions — appears after each successful command */}
