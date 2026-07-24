@@ -183,8 +183,13 @@ export default function VoiceSelectionMenu({ editor }: { editor: Editor }) {
 
       // Replace selection with new HTML
       // insertContent automatically replaces the current selection
-      editor.commands.insertContent(newHtml);
-      toast.success("Edit applied successfully!");
+      if (newHtml === "<DELETE>") {
+        editor.commands.deleteSelection();
+        toast.success("Text deleted.");
+      } else {
+        editor.commands.insertContent(newHtml);
+        toast.success("Edit applied successfully!");
+      }
     } catch (error) {
       console.error("Selection Edit Error", error);
       toast.error(

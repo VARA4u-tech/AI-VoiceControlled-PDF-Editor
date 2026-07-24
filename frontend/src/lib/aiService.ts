@@ -354,7 +354,8 @@ RULES:
 2. Preserve all existing HTML formatting (bold, italics, headings, tables, etc.) unless the voice command explicitly asks to change it.
 3. Apply the user's voice command to the selected HTML.
 4. If the command asks to "simplify", "rewrite", or "translate", modify the text but keep the structural HTML tags intact if possible.
-5. If the command is unrelated or unclear, return the original HTML unmodified.
+5. If the voice command asks to delete, remove, or clear the text, return exactly the word: <DELETE>
+6. If the command is unrelated or unclear, return the original HTML unmodified.
 `);
 
 export async function processSelectionEditWithAI(
@@ -401,7 +402,11 @@ export async function processSelectionEditWithAI(
         .replace(/\n?```$/, "")
         .trim();
 
-      return aiContent || selectedHtml;
+      if (aiContent === "<DELETE>" || !aiContent) {
+        return "<DELETE>";
+      }
+
+      return aiContent;
     } catch (error) {
       if (attempt === retries) {
         console.error("Selection Edit API Error:", error);
